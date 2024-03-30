@@ -22,7 +22,7 @@ export class SignUpComponent {
     onSignUp()
     {
         console.log("proba");
-        this.user.roles.push(this.role);
+        // this.user.roles.push(this.role);
         this.http.post("http://localhost:1201/security/sign-up",this.user).subscribe();
     }
 }

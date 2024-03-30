@@ -23,7 +23,7 @@ public class UserService {
 //        System.out.println(password);
 //        System.out.println(userRepository.count());
         User user=userRepository.findByUsername(username);
-        System.out.println(user.getRoles().size());
+//        System.out.println(user.getRoles().size());
         if (user!=null)
         {
             if (Objects.equals(user.getPassword(), password)) return user;

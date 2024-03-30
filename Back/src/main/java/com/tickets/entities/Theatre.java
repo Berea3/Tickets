@@ -28,7 +28,7 @@ public class Theatre {
         this.name=name;
     }
 
-    public void addAttachments(Attachment attachment)
+    public void addAttachment(Attachment attachment)
     {
         if (attachments==null) {attachments=new ArrayList<>();}
         attachments.add(attachment);

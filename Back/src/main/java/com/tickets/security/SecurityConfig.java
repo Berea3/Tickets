@@ -54,7 +54,8 @@ public class SecurityConfig {
                 response.getWriter().write(json);
 //                response.setStatus(200);
 //                String json=mapper.writeValueAsString(responseBody);
-                response.setStatus(HttpServletResponse.SC_FOUND);
+//                response.setStatus(HttpServletResponse.SC_FOUND);
+                response.setStatus(202);
             }
         }));
 

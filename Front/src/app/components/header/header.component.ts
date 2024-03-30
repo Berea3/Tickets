@@ -17,9 +17,15 @@ export class HeaderComponent {
 
     constructor(private securityService: SecurityService) {}
 
+    ngOnInit()
+    {
+        console.log(this.securityService.getUser());
+    }
+
     isOrganizer()
     {
-        for (let i=0;i<this.securityService.getUser().roles.length;i++) if (this.securityService.getUser().roles[i]=="organizer") return true;
+        // for (let i=0;i<this.securityService.getUser().roles.length;i++) if (this.securityService.getUser().roles[i]=="organizer") return true;
+        if (this.securityService.getUser()!=null) if (this.securityService.getUser().roles=="organizer") return true;
         return false;
     }
 

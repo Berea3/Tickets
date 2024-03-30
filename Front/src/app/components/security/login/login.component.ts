@@ -29,6 +29,7 @@ export class LoginComponent {
         this.http.post('http://localhost:1201/login',formData).subscribe(
             (response: any)=>{
                 console.log(response);
+                this.router.navigateByUrl("");
                 this.securityService.setUser(response);
             }
         );

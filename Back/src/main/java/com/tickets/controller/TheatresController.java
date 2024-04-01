@@ -28,15 +28,26 @@ public class TheatresController {
     @Autowired
     AttachmentRepository attachmentRepository;
 
-    //CREATE
+    // CREATE
     @PostMapping(path="/create")
     public HashMap<String,Long> create(@RequestBody Theatre theatre)
     {
+        System.out.println(theatre);
         theatreRepository.save(theatre);
         HashMap<String,Long> response=new HashMap<String, Long>();
         response.put("id",theatre.getId());
         return response;
     }
+
+//    @PostMapping(path="/create")
+//    public void create(@RequestBody Theatre theatre)
+//    {
+//        System.out.println(theatre);
+//        theatreRepository.save(theatre);
+////        HashMap<String,Long> response=new HashMap<String, Long>();
+////        response.put("id",theatre.getId());
+////        return response;
+//    }
 
     @PostMapping(path="/create/file/{id}")
     public void createFile(@RequestParam("file")MultipartFile file, @PathVariable("id") Long id) throws IOException {

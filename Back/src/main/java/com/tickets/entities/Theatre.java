@@ -14,6 +14,7 @@ public class Theatre {
     private Long id;
 
     private String name;
+    private int places;
 
     //@JsonIgnore
     @OneToMany(mappedBy = "theatre",
@@ -22,10 +23,21 @@ public class Theatre {
 
     public Theatre() {}
 
-    public Theatre(Long id, String name)
+    public Theatre(Long id, String name, int places)
     {
         this.id=id;
         this.name=name;
+        this.places=places;
+    }
+
+    @Override
+    public String toString() {
+        return "Theatre{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", places=" + places +
+                ", attachments=" + attachments +
+                '}';
     }
 
     public void addAttachment(Attachment attachment)
@@ -37,7 +49,11 @@ public class Theatre {
 
     public Long getId() {return this.id;}
     public String getName() {return this.name;}
+    public int getPlaces() {return this.places;}
+    public List<Attachment> getAttachments() {return this.attachments;}
 
     public void setId(Long id) {this.id=id;}
     public void setName(String name) {this.name=name;}
+    public void setPlaces(int places) {this.places=places;}
+    public void setAttachments(List<Attachment> attachments) {this.attachments=attachments;}
 }

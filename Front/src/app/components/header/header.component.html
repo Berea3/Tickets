@@ -4,5 +4,5 @@
     <span class="btn">Concerts</span>
     <span class="btn">Sport events</span>
     <span class="btn" [routerLink]="['login']">Login</span>
-    <span class="btn" *ngIf="isOrganizer()">Add</span>
+    <span class="btn" *ngIf="isOrganizer()" routerLink="add-event">Add</span>
 </div>

@@ -1,0 +1,7 @@
+<app-header></app-header>
+<form>
+    <input type="text" [(ngModel)]="theatre.name" name="name">
+    <input type="number" [(ngModel)]="theatre.places" name="places">
+
+    <button (click)="onSubmit()">Add event</button>
+</form>

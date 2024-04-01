@@ -19,7 +19,8 @@ public class SecurityController {
     private UserRepository userRepository;
 
     @GetMapping("/security")
-    public String security() throws JsonProcessingException {
+    public String security() throws JsonProcessingException
+    {
         Map<String, Object> responseBody=new HashMap<>();
         responseBody.put("loggedin","yes");
 

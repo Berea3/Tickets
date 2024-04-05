@@ -1,19 +1,26 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
 import {HttpClient} from "@angular/common/http";
+import {LinkService} from "../link.service";
+import {Theatre} from "../events/Theatre";
+import {NgForOf} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   standalone: true,
     imports: [
-        HeaderComponent
+        HeaderComponent,
+        NgForOf
     ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
-    constructor(private http: HttpClient) {
+    theatres: Theatre[];
+
+    constructor(private http: HttpClient, private link: LinkService, private router: Router) {
     }
 
     ngOnInit()
@@ -23,5 +30,17 @@ export class HomeComponent {
                 console.log(response);
             }
         );
+
+        this.http.get(this.link.url+"/theatres/getAll").subscribe(
+            (data: any)=>{
+                this.theatres=data;
+                console.log(data);
+            }
+        )
+    }
+
+    openTheatre(id: number)
+    {
+        this.router.navigateByUrl("/events/theatres/"+id);
     }
 }

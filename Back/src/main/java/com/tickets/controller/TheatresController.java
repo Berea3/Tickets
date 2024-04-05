@@ -66,7 +66,7 @@ public class TheatresController {
 
 
     // READ
-    @GetMapping(path="/getall")
+    @GetMapping(path="/getAll")
     public List<Theatre> getAll()
     {
         return theatreRepository.findAll();

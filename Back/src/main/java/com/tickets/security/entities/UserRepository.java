@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    @Query(value="select user from User user where user.username like %?1%")
+    @Query(value="select user from User user where user.username = ?1")
     User findByUsername(String username);
 
 }

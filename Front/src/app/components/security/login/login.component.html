@@ -1,5 +1,8 @@
-<form>
-    <input [(ngModel)]="username" name="username">
-    <input [(ngModel)]="password" name="password">
-    <button (click)="onSubmit()">Log in</button>
-</form>
+<span class="page">
+    <form class="form">
+        <span>Log in</span>
+        <input [(ngModel)]="username" name="username" autocomplete="off">
+        <input [(ngModel)]="password" name="password" autocomplete="off">
+        <span class="btn" (click)="onSubmit()">Log in</span>
+    </form>
+</span>

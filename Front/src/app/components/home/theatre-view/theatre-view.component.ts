@@ -24,6 +24,28 @@ export class TheatreViewComponent {
         this.http.get(this.link.url+"/theatres/getById/"+this.route.snapshot.params['id']).subscribe(
             (data: any)=>{
                 console.log(data);
+                this.theatre=data;
+            }
+        )
+    }
+
+    download(id:number)
+    {
+        return this.http.get(this.link.url+'/theatres/read/attachment/'+id,{responseType:'blob'});
+    }
+
+    displayFile(file: any)
+    {
+        const fileURL=URL.createObjectURL(file);
+        window.open(fileURL);
+    }
+
+    onDownloadFile(id: number)
+    {
+        console.log("file downloading");
+        this.download(id).subscribe(
+            (response)=>{
+                this.displayFile(response);
             }
         )
     }

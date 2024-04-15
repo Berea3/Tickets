@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .requestMatchers("/security/unauthenticated").permitAll()   // this works without logging in, for example for sign up
                 .requestMatchers("/theatres/getAll").permitAll()
                 .requestMatchers("/theatres/getById/{id}").permitAll()
+                .requestMatchers("/theatres/read/attachment/{id}").permitAll()
                 .requestMatchers("/security/sign-up").permitAll()
                 .requestMatchers("/security/admin").hasAuthority("admin")
                 .anyRequest().authenticated());

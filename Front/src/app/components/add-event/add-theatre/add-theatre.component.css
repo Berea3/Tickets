@@ -1,0 +1,35 @@
+/*.btn{*/
+/*    height: 2rem;*/
+/*    !*width: fit-content;*!*/
+/*    padding: 0.1rem 0.5rem 0.1rem 0.5rem;*/
+/*    background-color: blue;*/
+/*    display: flex;*/
+/*    align-content: center;*/
+/*    vertical-align: middle;*/
+/*    !*vertical-align: middle;*!*/
+/*    border-radius: 0.3rem;*/
+/*}*/
+
+.form{
+    display: flex;
+}
+
+.btn{
+    height: 2rem;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    /*margin-left: 0.5rem;*/
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    border-radius: 0.3rem;
+}
+
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    background-color: blue;
+}
+
+input[type=file]{
+    display: none;
+}

@@ -1,16 +1,9 @@
-<app-header></app-header>
-<form class="form">
-    <input type="text" [(ngModel)]="theatre.name" name="name">
-    <input type="number" [(ngModel)]="theatre.places" name="places">
-
-    <span class="btn">
-        <input type="file" (change)="onFileAdded($event)" accept=".doc,.docx,.pdf" multiple>
-        Add File
-    </span>
-
-    <button (click)="onSubmit()">Add event</button>
-</form>
-<!--<div>-->
-<!--    <span class="btn">Add File</span>-->
-<!--</div>-->
-<!--<span class="btn">Add File</span>-->
+<div [routerLink]="['/add-event/add-theatre']">
+    Theatre
+</div>
+<div>
+    Sport event
+</div>
+<div>
+    Concert
+</div>

@@ -7,12 +7,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.Message;
+import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.messaging.access.intercept.MessageMatcherDelegatingAuthorizationManager;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -30,6 +33,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static org.springframework.messaging.simp.SimpMessageType.MESSAGE;
+import static org.springframework.messaging.simp.SimpMessageType.SUBSCRIBE;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -41,6 +46,7 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(config -> config
                 .requestMatchers("/security/unauthenticated").permitAll()   // this works without logging in, for example for sign up
+                .requestMatchers("/portfolio").permitAll()     // this is for sockets
                 .requestMatchers("/theatres/getAll").permitAll()
                 .requestMatchers("/theatres/getById/{id}").permitAll()
                 .requestMatchers("/theatres/read/attachment/{id}").permitAll()

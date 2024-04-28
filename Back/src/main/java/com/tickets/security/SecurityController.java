@@ -2,6 +2,7 @@ package com.tickets.security;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tickets.entities.generator.Generator;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class SecurityController {
     @PostMapping("/security/sign-up")
     public String securitySignUp(@RequestBody User user)
     {
+        System.out.println(Generator.generateId());
         System.out.println(user.toString());
         userRepository.save(user);
         return "not logged in";

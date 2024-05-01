@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .requestMatchers("/security/sign-up").permitAll()
                 .requestMatchers("/security/admin").hasAuthority("admin")
                 .requestMatchers("/theatres/create").hasAuthority("organizer")
+                .requestMatchers("/sendEmail").permitAll()
                 .anyRequest().authenticated());
         httpSecurity.formLogin(form -> form.usernameParameter("username").passwordParameter("password").loginPage("/login")
                 .permitAll().successHandler(new AuthenticationSuccessHandler() {

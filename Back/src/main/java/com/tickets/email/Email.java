@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Service;
 public class Email {
 
     @Autowired
-    private final JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender=new JavaMailSenderImpl();
 
-    public Email(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
+//    public Email(JavaMailSender javaMailSender) {
+//        this.javaMailSender = javaMailSender;
+//    }
+
+    public Email() {}
 
     public void send(String toEmail, String subject, String body){
         try {

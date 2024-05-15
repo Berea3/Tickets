@@ -19,6 +19,8 @@ export class LoginComponent {
     username: string;
     password: string;
 
+    user: User=new User();
+
     constructor(private http: HttpClient, private router: Router, private securityService: SecurityService) {}
 
     onSubmit()
@@ -28,9 +30,35 @@ export class LoginComponent {
         formData.append('password',this.password);
         this.http.post('http://localhost:1201/login',formData).subscribe(
             (response: any)=>{
-                console.log(response);
-                this.router.navigateByUrl("");
-                this.securityService.setUser(response);
+                // if (response instanceof User)
+                // {
+                //     console.log(response);
+                //     this.router.navigateByUrl("");
+                //     this.securityService.setUser(response);
+                //     sessionStorage.setItem("loggedin","yes")
+                // }
+                // else
+                // {
+                //     alert("wrong credentials");
+                // }
+                this.user=response;
+                if (this.user!=null)
+                {
+                    console.log(response);
+                    this.router.navigateByUrl("");
+                    this.securityService.setUser(response);
+                    sessionStorage.setItem("loggedin","yes")
+                }
+
+                else
+                {
+                    alert("wrong credentials");
+                }
+
+                // console.log(response);
+                // this.router.navigateByUrl("");
+                // this.securityService.setUser(response);
+                // sessionStorage.setItem("loggedin","yes")
             }
         );
         // this.router.redirectTo

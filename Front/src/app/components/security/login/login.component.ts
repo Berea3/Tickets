@@ -42,12 +42,12 @@ export class LoginComponent {
                 //     alert("wrong credentials");
                 // }
                 this.user=response;
-                if (this.user!=null)
+                if (response!="")
                 {
                     console.log(response);
                     this.router.navigateByUrl("");
                     this.securityService.setUser(response);
-                    sessionStorage.setItem("loggedin","yes")
+                    sessionStorage.setItem("loggedin","yes");
                 }
 
                 else

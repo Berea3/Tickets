@@ -2,6 +2,7 @@ package com.tickets.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Theatre {
 
     private String name;
     private int places;
+    private LocalDate date;
 
     //@JsonIgnore
     @OneToMany(mappedBy = "theatre",
@@ -24,11 +26,12 @@ public class Theatre {
 
     public Theatre() {}
 
-    public Theatre(Long id, String name, int places)
-    {
-        this.id=id;
-        this.name=name;
-        this.places=places;
+    public Theatre(Long id, String name, int places, LocalDate date, List<Attachment> attachments) {
+        this.id = id;
+        this.name = name;
+        this.places = places;
+        this.date = date;
+        this.attachments = attachments;
     }
 
     @Override
@@ -51,10 +54,12 @@ public class Theatre {
     public Long getId() {return this.id;}
     public String getName() {return this.name;}
     public int getPlaces() {return this.places;}
+    private LocalDate getDate() {return this.date;}
     public List<Attachment> getAttachments() {return this.attachments;}
 
     public void setId(Long id) {this.id=id;}
     public void setName(String name) {this.name=name;}
     public void setPlaces(int places) {this.places=places;}
+    public void setDate(LocalDate date) {this.date=date;}
     public void setAttachments(List<Attachment> attachments) {this.attachments=attachments;}
 }

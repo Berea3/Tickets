@@ -30,6 +30,14 @@ public class SecurityController {
         return json;
     }
 
+    @GetMapping("/security/loggedin")
+    public HashMap<String,Boolean> loggedin()
+    {
+        HashMap<String,Boolean> map=new HashMap<>();
+        map.put("loggedin",true);
+        return map;
+    }
+
     @GetMapping("/security/all")
     public String securityAll()
     {

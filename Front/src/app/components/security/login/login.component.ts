@@ -30,6 +30,32 @@ export class LoginComponent {
         formData.append('password',this.password);
         this.http.post('http://localhost:1201/login',formData).subscribe(
             (response: any)=>{
+
+                this.user=response;
+                if (this.user.id==null)
+                {
+                    alert("wrong credentials");
+                }
+                else
+                {
+                    this.router.navigateByUrl("");
+                }
+
+                // this.http.get("http://localhost:1201/security/loggedin").subscribe(
+                //     (data: any) =>{
+                //         console.log(data['loggedin']);
+                //         if (data['loggedin']==true) {
+                //             this.router.navigateByUrl("");
+                //             console.log("true");
+                //         }
+                //         if (data['loggedin']==false) {
+                //             alert("wrong credentials");
+                //             console.log("false");
+                //         }
+                //     }
+                // )
+
+
                 // if (response instanceof User)
                 // {
                 //     console.log(response);
@@ -41,19 +67,19 @@ export class LoginComponent {
                 // {
                 //     alert("wrong credentials");
                 // }
-                this.user=response;
-                if (response!="")
-                {
-                    console.log(response);
-                    this.router.navigateByUrl("");
-                    this.securityService.setUser(response);
-                    sessionStorage.setItem("loggedin","yes");
-                }
-
-                else
-                {
-                    alert("wrong credentials");
-                }
+                // this.user=response;
+                // if (response!="")
+                // {
+                //     console.log(response);
+                //     this.router.navigateByUrl("");
+                //     this.securityService.setUser(response);
+                //     sessionStorage.setItem("loggedin","yes");
+                // }
+                //
+                // else
+                // {
+                //     alert("wrong credentials");
+                // }
 
                 // console.log(response);
                 // this.router.navigateByUrl("");

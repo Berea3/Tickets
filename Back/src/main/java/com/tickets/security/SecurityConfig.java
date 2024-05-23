@@ -1,6 +1,7 @@
 package com.tickets.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tickets.security.entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.messaging.access.intercept.MessageMatcherDelegatingAuthorizationManager;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -21,6 +21,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -68,7 +69,26 @@ public class SecurityConfig {
 //                response.setStatus(HttpServletResponse.SC_FOUND);
                 response.setStatus(202);
             }
-        }));
+        }).failureHandler(new AuthenticationFailureHandler() {
+                    @Override
+                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+//                        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+
+//                        response.setContentType("application/json");
+//                        Map<String, Boolean> responseBody=new HashMap<>();
+//                        responseBody.put("loggedin",false);
+//
+//                        ObjectMapper mapper=new ObjectMapper();
+//                        String json=mapper.writeValueAsString(responseBody);
+//                        response.getWriter().write(json);
+//                        response.getWriter().write("proba");
+                        User user=new User();
+                        ObjectMapper mapper=new ObjectMapper();
+                        String json=mapper.writeValueAsString(user);
+                        response.setStatus(202);
+                        response.getWriter().write(json);
+                    }
+                }));
 
         httpSecurity.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new AuthenticationEntryPoint() {
             @Override
@@ -76,8 +96,8 @@ public class SecurityConfig {
                 response.setStatus(HttpServletResponse.SC_ACCEPTED);
 
                 response.setContentType("application/json");
-                Map<String, Object> responseBody=new HashMap<>();
-                responseBody.put("loggedin","no");
+                Map<String, Boolean> responseBody=new HashMap<>();
+                responseBody.put("loggedin",false);
 
                 ObjectMapper mapper=new ObjectMapper();
                 String json=mapper.writeValueAsString(responseBody);

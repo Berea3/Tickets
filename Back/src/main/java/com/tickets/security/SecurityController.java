@@ -6,6 +6,7 @@ import com.tickets.entities.generator.Generator;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,8 +61,9 @@ public class SecurityController {
     @PostMapping("/security/sign-up")
     public String securitySignUp(@RequestBody User user)
     {
-        System.out.println(Generator.generateId());
-        System.out.println(user.toString());
+        user.setId(Generator.generateId());
+        String salt=BCrypt.gensalt();
+        user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
         userRepository.save(user);
         return "not logged in";
     }

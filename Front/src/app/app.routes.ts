@@ -5,6 +5,8 @@ import {SignUpComponent} from "./components/security/sign-up/sign-up.component";
 import {AddEventComponent} from "./components/add-event/add-event.component";
 import {TheatreViewComponent} from "./components/home/theatre-view/theatre-view.component";
 import {AddTheatreComponent} from "./components/add-event/add-theatre/add-theatre.component";
+import {SocketComponent} from "./components/socket/socket.component";
+import {TestComponent} from "./test/test.component";
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -12,5 +14,7 @@ export const routes: Routes = [
     { path: 'sign-up', component: SignUpComponent },
     { path: 'add-event', component: AddEventComponent },
     { path: 'add-event/add-theatre', component: AddTheatreComponent },
-    { path: 'events/theatres/:id', component: TheatreViewComponent }
+    { path: 'events/theatres/:id', component: TheatreViewComponent },
+    { path: 'socket', component: SocketComponent },
+    { path: 'test', component: TestComponent }
 ];

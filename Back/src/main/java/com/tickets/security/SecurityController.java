@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tickets.entities.generator.Generator;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
+import com.tickets.security.entities.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,10 +62,17 @@ public class SecurityController {
     @PostMapping("/security/sign-up")
     public String securitySignUp(@RequestBody User user)
     {
-        user.setId(Generator.generateId());
-        String salt=BCrypt.gensalt();
-        user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
-        userRepository.save(user);
-        return "not logged in";
+        if (!UserService.userExists(user.getEmail(),userRepository))
+        {
+            user.setId(Generator.generateId());
+            String salt=BCrypt.gensalt();
+            user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
+            userRepository.save(user);
+            return "user added";
+        }
+        else
+        {
+            return "user already exists";
+        }
     }
 }

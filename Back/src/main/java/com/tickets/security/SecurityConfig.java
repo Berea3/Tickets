@@ -105,14 +105,21 @@ public class SecurityConfig {
             }
         }));
 
+//        httpSecurity.rememberMe(withDefaults());
+
         httpSecurity.logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(false).logoutUrl("/logout").permitAll());
         httpSecurity.httpBasic(withDefaults());
 
         httpSecurity.cors(cors -> cors.configurationSource(corsConfigurationSource()));
         httpSecurity.csrf(csrf -> csrf.disable());
 
+//        httpSecurity.rememberMe(rememberMeConfigurer -> rememberMeConfigurer)
+
         return httpSecurity.build();
     }
+
+//    @Autowired
+//    private RememberMeProvider rememberMeProvider;
 
     @Autowired
     private MyAuthenticationProvider authenticationProvider;

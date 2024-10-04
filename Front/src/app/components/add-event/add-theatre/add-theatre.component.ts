@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Theatre} from "../../events/Theatre";
-import {HttpClient} from "@angular/common/http";
-import {LinkService} from "../../link.service";
+import { HttpClient } from "@angular/common/http";
+import {LinkService} from "../../../services/link.service";
 
 @Component({
   selector: 'app-add-theatre',

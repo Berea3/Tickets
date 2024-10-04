@@ -25,7 +25,9 @@ export class HeaderComponent {
     isOrganizer()
     {
         // for (let i=0;i<this.securityService.getUser().roles.length;i++) if (this.securityService.getUser().roles[i]=="organizer") return true;
-        if (this.securityService.getUser()!=null) if (this.securityService.getUser().roles=="organizer") return true;
+        if (this.securityService.getRole()=="organizer") return true;
+        console.log("not organizer");
+        console.log(this.securityService.getRole());
         return false;
         // if (sessionStorage.getItem("loggedin")=="yes") return true;
         // else return false;

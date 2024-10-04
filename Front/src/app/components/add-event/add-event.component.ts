@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
 import {FormsModule} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {Theatre} from "../events/Theatre";
-import {LinkService} from "../link.service";
+import {LinkService} from "../../services/link.service";
 import {RouterLink} from "@angular/router";
 
 @Component({

@@ -7,6 +7,7 @@ import {TheatreViewComponent} from "./components/home/theatre-view/theatre-view.
 import {AddTheatreComponent} from "./components/add-event/add-theatre/add-theatre.component";
 import {SocketComponent} from "./components/socket/socket.component";
 import {TestComponent} from "./test/test.component";
+import {StageComponent} from "./components/stage/stage.component";
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: 'add-event/add-theatre', component: AddTheatreComponent },
     { path: 'events/theatres/:id', component: TheatreViewComponent },
     { path: 'socket', component: SocketComponent },
-    { path: 'test', component: TestComponent }
+    { path: 'test', component: TestComponent },
+    { path: 'stage', component: StageComponent }
 ];

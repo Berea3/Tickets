@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {Theatre} from "../../events/Theatre";
-import {LinkService} from "../../link.service";
+import {LinkService} from "../../../services/link.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

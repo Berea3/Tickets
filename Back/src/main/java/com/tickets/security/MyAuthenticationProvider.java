@@ -73,10 +73,10 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication)
     {
-        String username=authentication.getName();
+        String email=authentication.getName();
         String password=authentication.getCredentials().toString();
 //        password=UserService.hashPassword(password);
-        User user=userService.validateUser(username,password,userRepository);
+        User user=userService.validateUser(email,password,userRepository);
         if (user!=null)       //return new UsernamePasswordAuthenticationToken(username,password,new ArrayList<>());
         {
             String[] roles = user.getRoles().split("_");

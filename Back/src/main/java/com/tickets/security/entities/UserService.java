@@ -2,6 +2,7 @@ package com.tickets.security.entities;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -26,10 +27,17 @@ public class UserService {
 //        System.out.println(user.getRoles().size());
         if (user!=null)
         {
-            if (Objects.equals(user.getPassword(), password)) return user;
+            if (BCrypt.checkpw(password,user.getPassword())) return user;
             else return null;
         }
         else return null;
+    }
+
+    public static boolean userExists(String email, UserRepository userRepository)
+    {
+        User user=userRepository.findByUsername(email);
+        if (user!=null) return true;
+        else return false;
     }
 
     public static String hashPassword(String password)

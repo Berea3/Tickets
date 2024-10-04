@@ -7,12 +7,12 @@ import java.util.List;
 @Entity
 public class User {
 
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Long id;
+    private String id;
 
-    private String username;
+    private String email;
     private String password;
 
 //    @ElementCollection(fetch = FetchType.EAGER)
@@ -24,10 +24,10 @@ public class User {
 
     }
 
-    public User(Long id, String username, String password, String roles)
+    public User(String id, String email, String password, String roles)
     {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
@@ -44,19 +44,19 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
 //                ", roles=" + roles +
                 '}';
     }
 
-    public Long getId() {return this.id;}
+    public String getId() {return this.id;}
     public String getPassword() {return this.password;}
-    public String getUsername() {return this.username;}
+    public String getEmail() {return this.email;}
     public String getRoles() {return this.roles;}
 
-    public void setId(Long id) {this.id=id;}
+    public void setId(String id) {this.id=id;}
     public void setPassword(String password) {this.password=password;}
-    public void setUsername(String username) {this.username=username;}
+    public void setEmail(String email) {this.email=email;}
     public void setRoles(String roles) {this.roles=roles;}
 }

@@ -12,8 +12,16 @@ export class SecurityService {
 
     getUser()
     {
+        // return sessionStorage.getItem("roles");
         return this.user;
     }
+
+    getRole()
+    {
+        // console.log(sessionStorage.getItem("roles"));
+        return sessionStorage.getItem("roles");
+    }
+
     setUser(user: User)
     {
         this.user=user;

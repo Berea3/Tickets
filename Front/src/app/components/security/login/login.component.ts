@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {Router} from "@angular/router";
 import {HomeComponent} from "../../home/home.component";
 import {SecurityService} from "../security.service";
@@ -16,7 +16,7 @@ import {User} from "../user";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-    username: string;
+    email: string;
     password: string;
 
     user: User=new User();
@@ -26,7 +26,7 @@ export class LoginComponent {
     onSubmit()
     {
         const formData : FormData=new FormData();
-        formData.append('username',this.username);
+        formData.append('username',this.email);
         formData.append('password',this.password);
         this.http.post('http://localhost:1201/login',formData).subscribe(
             (response: any)=>{
@@ -38,6 +38,7 @@ export class LoginComponent {
                 }
                 else
                 {
+                    sessionStorage.setItem("roles",this.user.roles.toString());
                     this.router.navigateByUrl("");
                 }
 
@@ -89,5 +90,10 @@ export class LoginComponent {
         );
         // this.router.redirectTo
         console.log(this.password);
+    }
+
+    onSignUp()
+    {
+        this.router.navigateByUrl("sign-up");
     }
 }

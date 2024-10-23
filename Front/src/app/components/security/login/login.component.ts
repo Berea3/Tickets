@@ -18,6 +18,7 @@ import {User} from "../user";
 export class LoginComponent {
     email: string;
     password: string;
+    isTrue: boolean=true;
 
     user: User=new User();
 
@@ -28,6 +29,7 @@ export class LoginComponent {
         const formData : FormData=new FormData();
         formData.append('username',this.email);
         formData.append('password',this.password);
+        formData.append('rememberMe',"true");
         this.http.post('http://localhost:1201/login',formData).subscribe(
             (response: any)=>{
 

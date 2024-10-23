@@ -116,7 +116,7 @@ public class SecurityConfig {
         httpSecurity.cors(cors -> cors.configurationSource(corsConfigurationSource()));
         httpSecurity.csrf(csrf -> csrf.disable());
 
-        httpSecurity.rememberMe(rememberMe -> rememberMe.rememberMeParameter("rememberMe"));
+        httpSecurity.rememberMe(rememberMe -> rememberMe.rememberMeParameter("rememberMe").userDetailsService(myUserDetailsService).alwaysRemember(true));
 
 //        httpSecurity.rememberMe(rememberMeConfigurer -> rememberMeConfigurer)
 

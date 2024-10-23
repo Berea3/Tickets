@@ -2,8 +2,10 @@ package com.tickets.security;
 
 import com.tickets.security.entities.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,17 +19,27 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        String[] roles = user.getRoles().split("_");
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+
+        for (String role : roles) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role);
+            grantedAuthorities.add(grantedAuthority);
+        }
+        return grantedAuthorities;
+//        return List.of(user.getRoles().split("$"));
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return user.getPassword();
+//        return "";
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return user.getEmail();
+//        return "";
     }
 
     @Override

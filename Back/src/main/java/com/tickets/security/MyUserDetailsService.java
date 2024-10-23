@@ -1,7 +1,9 @@
 package com.tickets.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,10 +20,16 @@ public class MyUserDetailsService implements UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> optionalUser=userRepository.findById(username);
-        User user=optionalUser.get();
-        if (optionalUser.isPresent()) return new MyUserDetails(user);
-        else return null;
+    public UserDetails loadUserByUsername(String userJson) throws UsernameNotFoundException {
+//        System.out.println(username);
+//        ObjectMapper mapper=new ObjectMapper();
+//        String username=mapper.readValue(userJson,"username");
+        JSONObject jsonObject = new JSONObject(userJson);
+        User user=userRepository.findByUsername(jsonObject.getString("email"));
+
+        System.out.println(jsonObject.getString("email"));
+        return new MyUserDetails(user);
+//        if (optionalUser.isPresent()) return new MyUserDetails(optionalUser.get());
+//        else return null;
     }
 }

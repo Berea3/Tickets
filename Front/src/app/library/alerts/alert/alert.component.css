@@ -1,0 +1,14 @@
+.alert{
+    top: 1rem;
+
+    position: absolute;
+
+    transform: translate(-50%);
+    left: 50%;
+    background-color: #ff5c64;
+    color: black;
+    height: 3rem;
+    width: 50rem;
+
+    border-radius: 0.5rem;
+}

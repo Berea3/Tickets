@@ -1,0 +1,6 @@
+<p>theatre-view works!</p>
+@for (attachment of theatre.attachments;track attachment)
+{
+    <div (click)="onDownloadFile(attachment.id)">{{ attachment.id }}</div>
+    <div>{{ attachment.name }}</div>
+}

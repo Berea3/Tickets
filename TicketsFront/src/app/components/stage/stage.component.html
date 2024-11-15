@@ -1,0 +1,18 @@
+<span class="test">a</span>
+
+<div>
+    @for(x of [].constructor(rows); track x)
+    {
+        <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
+            @for(x of [].constructor(columns); track x)
+            {
+                <span class="seat"></span>
+            }
+        </div>
+        <!--    <div class="seat"></div>-->
+    }
+</div>
+
+<button (click)="addRow()">add row</button>
+<button (click)="addColumn()">add column</button>
+<input type="checkbox" [(ngModel)]="zig_zag">

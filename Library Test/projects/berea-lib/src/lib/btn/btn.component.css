@@ -1,0 +1,12 @@
+.btn{
+    /*height: 2rem;*/
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    /*margin-left: 0.5rem;*/
+    /*background-color: red;*/
+    border-radius: 0.3rem;
+    border: none;
+}
+
+.btn:hover{
+    cursor: pointer;
+}

@@ -5,15 +5,23 @@ export interface Theme {
     primary: string;
     secondary: string;
     accent: string;
+    info: string;
+    success: string;
+    warning: string;
+    error: string;
     neutral: string;
     background: string;
 }
 
 const themes: Theme[]=[
     {//light
-        primary: "blue",
-        secondary: "pink",
-        accent: "green",
+        primary: "rgba(74,0,255,255)",
+        secondary: "rgba(255,0,211,255)",
+        accent: "rgba(0,215,192,255)",
+        info: "rgba(0,181,255,255)",
+        success: "rgba(0,169,110,255)",
+        warning: "rgba(255,190,0,255)",
+        error: "rgba(255,88,97,255)",
         neutral: "black",
         background: "white"
     },
@@ -21,6 +29,10 @@ const themes: Theme[]=[
         primary: "red",
         secondary: "pink",
         accent: "green",
+        info: "rgba(0,181,255,255)",
+        success: "",
+        warning: "",
+        error: "",
         neutral: "black",
         background: "black"
     },
@@ -78,6 +90,70 @@ export class ThemeService {
         let color: string;
         color = this.themes?.[this.getThemeIndex()]?.secondary;
         return color;
+    }
+
+    getAccent()
+    {
+        let color: string;
+        color = this.themes?.[this.getThemeIndex()]?.accent;
+        return color;
+    }
+
+    getInfo()
+    {
+        let color: string;
+        color = this.themes?.[this.getThemeIndex()]?.info;
+        return color;
+    }
+
+    getSuccess()
+    {
+        let color: string;
+        color = this.themes?.[this.getThemeIndex()]?.success;
+        return color;
+    }
+
+    getWarning()
+    {
+        let color: string;
+        color = this.themes?.[this.getThemeIndex()]?.warning;
+        return color;
+    }
+
+    getError()
+    {
+        let color: string;
+        color = this.themes?.[this.getThemeIndex()]?.error;
+        return color;
+    }
+
+    getButtonBackgroundColor(color: string)
+    {
+        switch(color)
+        {
+            case "primary":
+                return this.themes?.[this.getThemeIndex()].primary;
+            case "secondary":
+                return this.themes?.[this.getThemeIndex()].secondary;
+            case "accent":
+                return this.themes?.[this.getThemeIndex()].accent;
+            case "info":
+                return this.themes?.[this.getThemeIndex()].info;
+            case "success":
+                return this.themes?.[this.getThemeIndex()].success;
+            case "warning":
+                return this.themes?.[this.getThemeIndex()].warning;
+            case "error":
+                return this.themes?.[this.getThemeIndex()].error;
+            default:
+                return this.themes?.[this.getThemeIndex()].primary;
+        }
+    }
+
+    getColorFont(color: string)
+    {
+        if (color=="accent" || color=="info" || color=="success" || color=="warning" || color=="error") return "black";
+        else return "white";
     }
 
     getBackground()

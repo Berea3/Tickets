@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {BtnComponent, ThemeService} from 'berea-lib';
+// import {BtnComponent, ThemeService} from 'berea-lib';
 import {NgStyle} from '@angular/common';
+import {BtnComponent} from './btn/btn.component';
+import {ThemeService} from '../../projects/berea-lib/src/lib/theme.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-    imports: [RouterOutlet, BtnComponent, BtnComponent, FormsModule, BtnComponent, NgStyle],
+    imports: [RouterOutlet, BtnComponent, BtnComponent, FormsModule, BtnComponent, NgStyle, BtnComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,12 +1,23 @@
-.btn{
-    /*height: 2rem;*/
-    padding: 0.8rem 2rem 0.8rem 2rem;
-    /*margin-left: 0.5rem;*/
-    /*background-color: red;*/
-    border-radius: 0.3rem;
+.btn {
+    font-family: Tahoma, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 2.8rem;
+    padding: 0 1rem 0 1rem;
+    border-radius: 0.5rem;
     border: none;
+    transition: all 0.1s ease-in-out;
 }
 
-.btn:hover{
+.btn:hover,
+.btn:active {
+    filter: brightness(90%);
     cursor: pointer;
+}
+
+.btn:active {
+    transform: scale(0.95);
 }

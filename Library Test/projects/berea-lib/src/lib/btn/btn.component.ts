@@ -3,7 +3,7 @@ import {ThemeService} from '../theme.service';
 import {NgStyle} from '@angular/common';
 
 @Component({
-  selector: 'lib-btn',
+  selector: 'ber-btn',
   standalone: true,
     imports: [
         NgStyle
@@ -15,6 +15,8 @@ export class BtnComponent {
     @Input() type: string;
 
     color: string;
+    fontColor: string;
+    hovered: boolean;
 
     constructor(private themeService: ThemeService) {}
 
@@ -22,7 +24,9 @@ export class BtnComponent {
     {
         this.themeService.getThemeAsObservable().subscribe(
             ()=>{
-                this.color=this.themeService.getPrimary();
+                this.color=this.themeService.getButtonBackgroundColor(this.type);
+                // if (this.color=="accent" || this.color=="")
+                this.fontColor=this.themeService.getColorFont(this.type);
             }
         );
     }

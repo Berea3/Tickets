@@ -150,6 +150,29 @@ export class ThemeService {
         }
     }
 
+    getCheckboxBackgroundColor(color: string)
+    {
+        switch(color)
+        {
+            case "primary":
+                return this.themes?.[this.getThemeIndex()].primary;
+            case "secondary":
+                return this.themes?.[this.getThemeIndex()].secondary;
+            case "accent":
+                return this.themes?.[this.getThemeIndex()].accent;
+            case "info":
+                return this.themes?.[this.getThemeIndex()].info;
+            case "success":
+                return this.themes?.[this.getThemeIndex()].success;
+            case "warning":
+                return this.themes?.[this.getThemeIndex()].warning;
+            case "error":
+                return this.themes?.[this.getThemeIndex()].error;
+            default:
+                return this.themes?.[this.getThemeIndex()].primary;
+        }
+    }
+
     getColorFont(color: string)
     {
         if (color=="accent" || color=="info" || color=="success" || color=="warning" || color=="error") return "black";

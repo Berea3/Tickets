@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {HomeComponent} from "../../home/home.component";
 import {SecurityService} from "../security.service";
 import {User} from "../user";
+import {LinkService} from "../../../services/link.service";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
 
     user: User=new User();
 
-    constructor(private http: HttpClient, private router: Router, private securityService: SecurityService) {}
+    constructor(private http: HttpClient, private router: Router, private securityService: SecurityService, private link: LinkService) {}
 
     onSubmit()
     {
@@ -30,7 +31,7 @@ export class LoginComponent {
         formData.append('username',this.email);
         formData.append('password',this.password);
         formData.append('rememberMe',"true");
-        this.http.post('http://localhost:1201/login',formData).subscribe(
+        this.http.post(this.link.url+'/login',formData).subscribe(
             (response: any)=>{
 
                 this.user=response;

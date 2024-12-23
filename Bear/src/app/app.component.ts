@@ -10,5 +10,10 @@ import {InputComponent} from './data/input/input.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Bear';
+    title = 'Bear';
+
+    inputChecked(state: boolean)
+    {
+        console.log(state);
+    }
 }

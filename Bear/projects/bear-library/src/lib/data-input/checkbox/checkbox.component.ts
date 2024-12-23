@@ -15,15 +15,16 @@ import {NgStyle} from '@angular/common';
 export class CheckboxComponent {
 
     @Input() type: string;
-    @Output() isChecked=new EventEmitter<boolean>();
+    @Output() checkedStateChange=new EventEmitter<boolean>();
 
     color: string;
     fontColor: string;
     hovered: boolean;
 
-    // checked: boolean=false;
 
-    checked: boolean=false;
+    isChecked: boolean=false;
+    private checked = new BehaviorSubject<boolean>(false);
+    checkedObservable=this.checked.asObservable();
 
     constructor(private themeService: ThemeService) {}
 
@@ -35,11 +36,17 @@ export class CheckboxComponent {
                 this.fontColor=this.themeService.getColorFont(this.type);
             }
         );
+        this.checkedObservable.subscribe(
+            (value)=>{
+                this.isChecked=value;
+            }
+        )
     }
 
     onChecked(event: Event)
     {
-        this.checked=!this.checked;
-        this.isChecked.emit(this.checked);
+        // this.isChecked=!this.isChecked;
+        this.checkedStateChange.emit(!this.isChecked);
+        this.checked.next(!this.isChecked);
     }
 }

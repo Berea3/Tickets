@@ -1,0 +1,5 @@
+<!--(mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"-->
+<div class="group">
+    <input type="text" class="text-input input" [ngStyle]="{'outline-color': color}" (focusin)="onFocusIn()" (focusout)="onFocusOut()">
+    <label class="label"><ng-content></ng-content></label>
+</div>

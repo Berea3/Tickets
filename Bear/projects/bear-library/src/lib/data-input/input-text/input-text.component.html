@@ -1,9 +1,0 @@
-<!--(mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"-->
-<div class="group">
-    <input type="text" class="text-input input"
-           [ngStyle]="{'outline-color': color}"
-           (focusin)="onFocusIn()"
-           (focusout)="onFocusOut()"
-           (input)="onInput($event)">
-    <label class="label" [ngClass]="{'focusedInputLabel' : focused || text.length>0}"><ng-content></ng-content></label>
-</div>

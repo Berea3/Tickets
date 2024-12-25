@@ -10,7 +10,6 @@ import {RouterLink} from "@angular/router";
   selector: 'app-add-event',
   standalone: true,
     imports: [
-        HeaderComponent,
         FormsModule,
         RouterLink
     ],

@@ -11,7 +11,6 @@ import {Router} from "@angular/router";
   standalone: true,
     imports: [
         HeaderComponent,
-        NgForOf
     ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

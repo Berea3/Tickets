@@ -7,7 +7,6 @@ import {NgClass, NgStyle} from "@angular/common";
   standalone: true,
     imports: [
         FormsModule,
-        NgStyle,
         NgClass
     ],
   templateUrl: './stage.component.html',

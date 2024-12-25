@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {BtnComponent, CheckboxComponent} from 'BearLibrary';
-import {InputComponent} from './data/input/input.component';
+import {BearBtnComponent, BearInputTextComponent, BearInputCheckboxComponent} from 'BearLibrary'
 
 @Component({
   selector: 'app-root',
-    imports: [RouterOutlet, BtnComponent, CheckboxComponent, InputComponent],
+    imports: [BearBtnComponent, BearInputTextComponent, BearInputCheckboxComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -15,5 +13,10 @@ export class AppComponent {
     inputChecked(state: boolean)
     {
         console.log(state);
+    }
+
+    textChanged(text: string)
+    {
+        console.log(text);
     }
 }

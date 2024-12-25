@@ -3,7 +3,7 @@ import {ThemeService} from '../theme.service';
 import {NgStyle} from '@angular/common';
 
 @Component({
-  selector: 'ber-btn',
+  selector: 'bear-btn',
   standalone: true,
     imports: [
         NgStyle

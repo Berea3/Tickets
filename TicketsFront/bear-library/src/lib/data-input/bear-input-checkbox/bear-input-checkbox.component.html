@@ -1,0 +1,7 @@
+<input type="checkbox" class="checkbox"
+       [ngStyle]="{'border-color': color,
+       'background-color': isChecked ? color : 'transparent',
+       'color': fontColor
+       }"
+       (change)="onChecked($event)"
+>

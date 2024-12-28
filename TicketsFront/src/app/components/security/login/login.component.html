@@ -1,9 +1,29 @@
-<span class="page">
-    <form class="form">
+<div class="page">
+    <div class="form">
         <span>Log in</span>
-        <input [(ngModel)]="email" name="email" autocomplete="off">
-        <input [(ngModel)]="password" name="password" autocomplete="off">
-        <span class="btn" (click)="onSubmit()">Log in</span>
-        <span class="btn" (click)="onSignUp()">Sign up</span>
-    </form>
-</span>
+        <bear-input-text (textChanged)="setEmail($event)">Email</bear-input-text>
+        <bear-input-text (textChanged)="setPassword($event)">Password</bear-input-text>
+<!--        <input [(ngModel)]="email" name="email" autocomplete="off">-->
+<!--        <input [(ngModel)]="password" name="password" autocomplete="off">-->
+        <bear-btn>Login</bear-btn>
+<!--        <span class="btn" (click)="onSubmit()">Log in</span>-->
+<!--        <span class="btn" (click)="onSignUp()">Sign up</span>-->
+    </div>
+</div>
+
+
+<!--<div class="cont">-->
+<!--    <div class="form">-->
+<!--        <h1 class="title">PLC Tool Login</h1>-->
+<!--&lt;!&ndash;        <mat-form-field appearance="outline" class="projectInfo">&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-label>username</mat-label>&ndash;&gt;-->
+<!--            <input   name="username">-->
+<!--&lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-form-field appearance="outline" class="projectInfo">&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-label>password</mat-label>&ndash;&gt;-->
+<!--            <input  [(ngModel)]="password" name="username" type="password">-->
+<!--&lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <button (click)="onSubmit()">Log in</button>&ndash;&gt;-->
+<!--        <bear-btn>Log in</bear-btn>-->
+<!--    </div>-->
+<!--</div>-->

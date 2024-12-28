@@ -1,0 +1,68 @@
+.page{
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    /*background: rgb(180,192,247);*/
+    /*background: linear-gradient(90deg, rgba(180,192,247,1) 0%, rgba(234,235,255,1) 100%);*/
+    font-size: 1.25rem;
+}
+
+.form{
+    /*margin-top: 40vh;*/
+    /*margin-left: 50vw;*/
+    /*transform: translate(-50%,-50%);*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    /*width: 30rem;*/
+    /*height: 15rem;*/
+
+
+    /*position: absolute;*/
+    margin-top: 40vh;
+    margin-left: 50vw;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 30rem;
+    height: 18rem;
+}
+
+/*input{*/
+/*    height: 1.5rem;*/
+/*    width: 18rem;*/
+/*    margin: 0.5rem 0.5rem 0.5rem 0.5rem;*/
+/*    padding: 1rem;*/
+/*    border-radius: 0.3rem;*/
+/*    border-style: solid;*/
+/*    border-color: gray;*/
+/*    border-width: 0.2rem;*/
+/*    font-size: 1rem;*/
+/*}*/
+
+/*input:focus{*/
+/*    outline: none;*/
+/*    border-style: solid;*/
+/*    border-color: blue;*/
+/*    border-width: 0.2rem;*/
+/*    !*background-color: blue;*!*/
+/*}*/
+
+/*.btn{*/
+/*    height: 2rem;*/
+/*    padding: 0.1rem 0.5rem 0.1rem 0.5rem;*/
+/*    margin-left: 0.5rem;*/
+/*    background-color: blue;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    border-radius: 0.3rem;*/
+/*    color: white;*/
+/*}*/
+
+/*.btn:hover{*/
+/*    background-color: darkblue;*/
+/*    cursor: pointer;*/
+/*}*/

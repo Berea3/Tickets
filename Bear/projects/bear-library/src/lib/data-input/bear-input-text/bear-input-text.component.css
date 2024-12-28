@@ -38,10 +38,12 @@ input:focus{
 }
 
 .group{
+    display: block;
+    position: relative;
     height: 1.5rem;
     width: 18rem;
     font-family: Tahoma, sans-serif;
-    margin: 1rem;
+    /*margin: 1rem;*/
 }
 
 /*.input:focus{*/
@@ -52,7 +54,7 @@ input:focus{
 /*    !*background-color: blue;*!*/
 /*}*/
 
-.group .label{
+.label{
     position: absolute;
     left: 1rem;
     padding: 1rem;

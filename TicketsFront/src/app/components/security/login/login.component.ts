@@ -6,12 +6,15 @@ import {HomeComponent} from "../../home/home.component";
 import {SecurityService} from "../security.service";
 import {User} from "../user";
 import {LinkService} from "../../../services/link.service";
+import {BearBtnComponent, BearInputTextComponent} from 'bear-library';
 
 @Component({
   selector: 'app-login',
   standalone: true,
     imports: [
-        FormsModule
+        FormsModule,
+        BearInputTextComponent,
+        BearBtnComponent
     ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -98,5 +101,15 @@ export class LoginComponent {
     onSignUp()
     {
         this.router.navigateByUrl("sign-up");
+    }
+
+    setEmail(email: string)
+    {
+        this.email=email;
+    }
+
+    setPassword(password: string)
+    {
+        this.password=password;
     }
 }

@@ -1,0 +1,21 @@
+<!--<div class="group">-->
+<!--    <label class="label" [ngClass]="{'focusedInputLabel' : focused || text.length>0}" for="input"><ng-content></ng-content></label>-->
+<!--    <input type="text" class="text-input input"-->
+<!--           [ngStyle]="{'outline-color': color}"-->
+<!--           (focusin)="onFocusIn()"-->
+<!--           (focusout)="onFocusOut()"-->
+<!--           (input)="onInput($event)">-->
+<!--</div>-->
+
+
+<div class="group">
+        <input type="text" class="text-input input" id="input"
+               [ngStyle]="{'outline-color': color}"
+               (focusin)="onFocusIn()"
+               (focusout)="onFocusOut()"
+               (input)="onInput($event)">
+<!--    <input type="text" id="input" required>-->
+<!--    <label for="input">Enter your text</label>-->
+        <label class="label" [ngClass]="{'focusedInputLabel' : focused || text.length>0}" for="input"><ng-content></ng-content></label>
+
+</div>

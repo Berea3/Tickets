@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BearBtnComponent, BearInputTextComponent, BearInputCheckboxComponent} from 'BearLibrary'
+import {BearBtnComponent, BearInputCheckboxComponent, BearInputTextComponent} from 'BearLibrary'
 
 @Component({
   selector: 'app-root',

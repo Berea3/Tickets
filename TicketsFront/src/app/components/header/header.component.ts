@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {SecurityService} from "../security/security.service";
 import {NgIf} from "@angular/common";
+import {BearBtnComponent} from 'bear-library';
 
 @Component({
   selector: 'app-header',
   standalone: true,
     imports: [
         RouterLink,
-        NgIf
+        NgIf,
+        BearBtnComponent
     ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

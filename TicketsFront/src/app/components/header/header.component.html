@@ -1,9 +1,16 @@
 <div class="navbar">
-    <span class="btn" routerLink="">Events</span>
-    <span class="btn">Theatres</span>
-    <span class="btn">Concerts</span>
-    <span class="btn">Movies</span>
-    <span class="btn">Sport events</span>
-    <span class="btn" [routerLink]="['login']">Login</span>
-    <span class="btn" *ngIf="isOrganizer()" routerLink="add-event">Add</span>
+    <bear-btn>Events</bear-btn>
+    <bear-btn>Theatres</bear-btn>
+    <bear-btn>Concerts</bear-btn>
+    <bear-btn>Movies</bear-btn>
+    <bear-btn>Sport events</bear-btn>
+    <bear-btn [routerLink]="['login']">Login</bear-btn>
+    <bear-btn  *ngIf="isOrganizer()" routerLink="add-event">Add</bear-btn>
+<!--    <span class="btn" routerLink="">Events</span>-->
+<!--    <span class="btn">Theatres</span>-->
+<!--    <span class="btn">Concerts</span>-->
+<!--    <span class="btn">Movies</span>-->
+<!--    <span class="btn">Sport events</span>-->
+<!--    <span class="btn" [routerLink]="['login']">Login</span>-->
+<!--    <span class="btn" *ngIf="isOrganizer()" routerLink="add-event">Add</span>-->
 </div>

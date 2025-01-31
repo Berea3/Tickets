@@ -62,6 +62,14 @@ export class ThemeService {
 
     constructor() { }
 
+
+    ngOnInit()
+    {
+        let theme: string | null;
+        theme=localStorage.getItem("theme");
+        if (theme==null) localStorage.setItem("theme","light");
+    }
+
     setTheme(theme: string)
     {
         console.log("changing theme");
@@ -81,6 +89,12 @@ export class ThemeService {
     {
         let theme: string | null;
         theme=localStorage.getItem("theme");
+        // console.log("THEEEEME",theme);
+        if (theme==null)
+        {
+            localStorage.setItem("theme","light");
+            theme="light";
+        }
         if (theme=="light") return 0;
         else return 1;
     }

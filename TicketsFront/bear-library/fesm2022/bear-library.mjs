@@ -69,6 +69,10 @@ class ThemeService {
     themeObservable = this.theme.asObservable();
     themes = themes;
     constructor() { }
+    // ngOnInit()
+    // {
+    //     theme
+    // }
     setTheme(theme) {
         console.log("changing theme");
         localStorage.setItem("theme", theme);
@@ -85,6 +89,7 @@ class ThemeService {
     getThemeIndex() {
         let theme;
         theme = localStorage.getItem("theme");
+        console.log("THEEEEME", theme);
         if (theme == "light")
             return 0;
         else

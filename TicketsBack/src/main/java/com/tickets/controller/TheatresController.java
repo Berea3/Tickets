@@ -87,7 +87,8 @@ public class TheatresController {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(file.getType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+file.getName()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\""+file.getName()+"\"") //in cazul in care se vrea display in browser
+//                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+file.getName()+"\"")
                 .body(new ByteArrayResource(file.getFile()));
     }
 

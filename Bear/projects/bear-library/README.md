@@ -64,3 +64,4 @@ For more information on using the Angular CLI, including detailed command refere
 
 
 button colors: primary, secondary, accent, info, success, warning, error, neutral
+<bear-input-checkbox type="info" (checkedStateChange)="changeZigZag($event)">hellou</bear-input-checkbox>

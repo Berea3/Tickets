@@ -1,18 +1,22 @@
-<span class="test">a</span>
+<app-header></app-header>
 
-<div>
-    @for(x of [].constructor(rows); track x)
-    {
-        <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
-            @for(x of [].constructor(columns); track x)
-            {
-                <span class="seat"></span>
-            }
-        </div>
-        <!--    <div class="seat"></div>-->
-    }
+<div class="menu">
+    <bear-btn type="info" (click)="addRow()">add row</bear-btn>
+    <bear-btn type="info" (click)="addColumn()">add column</bear-btn>
+    <bear-input-checkbox type="info" (checkedStateChange)="changeZigZag($event)">hellou</bear-input-checkbox>
+    <bear-btn type="accent" (click)="addStage()">Add stage</bear-btn>
 </div>
 
-<button (click)="addRow()">add row</button>
-<button (click)="addColumn()">add column</button>
-<input type="checkbox" [(ngModel)]="zig_zag">
+<div class="stage">
+    <div class="seats">
+        @for(x of [].constructor(rows); track x)
+        {
+            <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
+                @for(x of [].constructor(columns); track x)
+                {
+                    <span class="seat"></span>
+                }
+            </div>
+        }
+    </div>
+</div>

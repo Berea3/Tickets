@@ -1,8 +1,28 @@
-.test{
-    height: 10rem;
-    width: 10rem;
-    background-color: blue;
+.menu{
+    width: 90%;
+    background-color: rgba(165,165,255,0.2);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+.stage{
+    width: 90%;
+    background-color: rgba(121,214,87,0.2);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem auto;
+    min-height: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/*.seats{*/
+/*    background-color: blue;*/
+/*}*/
 
 .row{
     display: flex;

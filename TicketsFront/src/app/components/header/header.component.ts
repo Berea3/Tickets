@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {SecurityService} from "../security/security.service";
+import {SecurityService} from "../../services/security.service";
 import {NgIf} from "@angular/common";
 import {BearBtnComponent} from 'bear-library';
 
@@ -35,4 +35,8 @@ export class HeaderComponent {
         // else return false;
     }
 
+    isLoggedIn()
+    {
+        return this.securityService.isLoggedIn();
+    }
 }

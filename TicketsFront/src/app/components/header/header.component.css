@@ -1,20 +1,38 @@
 .navbar{
     display: flex;
     align-items: center;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.8);
     backdrop-filter: blur(0.5rem);
     height: 4rem;
     position: sticky;
-    width: 98vw;
+    /*width: 97vw;*/
+    width: 100%;
     padding-left: 1vw;
     padding-right: 1vw;
     /*margin-bottom: 4rem;*/
     top: 0;
 
+    z-index: 10;
+
     justify-content: space-between;
     border-bottom: solid rgb(230,230,230);
-    border-width: 0.1rem;
+    border-bottom-width: 0.1rem;
+    /*border-width: 0.1rem;*/
     /*gap: 1rem;*/
+}
+
+.homeLink{
+    text-decoration: none;
+}
+
+.mainMenu{
+    display: flex;
+    gap: 1rem;
+}
+
+.accountMenu{
+    display: flex;
+    gap: 1rem;
 }
 
 /*.btn{*/

@@ -7,6 +7,7 @@ import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
 import com.tickets.security.entities.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,5 +75,13 @@ public class SecurityController {
         {
             return "user already exists";
         }
+    }
+
+    @GetMapping("/security/getUser")
+    public User getUser() throws JsonProcessingException {
+        ObjectMapper objectMapper=new ObjectMapper();
+        User user=objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class);
+        user=userRepository.findById(user.getId()).get();
+        return user;
     }
 }

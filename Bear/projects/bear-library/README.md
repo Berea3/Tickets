@@ -62,6 +62,11 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+## Adding the library to a project
+1. build the library
+2. copy paste the library into the project
+3. add the library to package.json dependencies ```"bear-library": "./bear-library"```
+4. run npm install
 
 button colors: primary, secondary, accent, info, success, warning, error, neutral
 <bear-input-checkbox type="info" (checkedStateChange)="changeZigZag($event)">hellou</bear-input-checkbox>

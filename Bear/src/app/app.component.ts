@@ -3,7 +3,7 @@ import {BearBtnComponent, BearInputCheckboxComponent, BearInputTextComponent} fr
 
 @Component({
   selector: 'app-root',
-    imports: [BearBtnComponent, BearInputTextComponent, BearInputCheckboxComponent],
+    imports: [BearBtnComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -19,6 +19,7 @@ export declare class ThemeService {
     themeObservable: import("rxjs").Observable<string>;
     themes: Theme[];
     constructor();
+    ngOnInit(): void;
     setTheme(theme: string): void;
     getTheme(): string;
     getThemeIndex(): number;

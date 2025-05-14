@@ -61,3 +61,7 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+button colors: primary, secondary, accent, info, success, warning, error, neutral
+<bear-input-checkbox type="info" (checkedStateChange)="changeZigZag($event)">hellou</bear-input-checkbox>

@@ -69,10 +69,13 @@ class ThemeService {
     themeObservable = this.theme.asObservable();
     themes = themes;
     constructor() { }
-    // ngOnInit()
-    // {
-    //     theme
-    // }
+    ngOnInit() {
+        // console.log("initializing theme...")
+        let theme;
+        theme = localStorage.getItem("theme");
+        if (theme == null)
+            localStorage.setItem("theme", "light");
+    }
     setTheme(theme) {
         console.log("changing theme");
         localStorage.setItem("theme", theme);
@@ -89,7 +92,11 @@ class ThemeService {
     getThemeIndex() {
         let theme;
         theme = localStorage.getItem("theme");
-        console.log("THEEEEME", theme);
+        // console.log("THEEEEME",theme);
+        if (theme == null) {
+            localStorage.setItem("theme", "light");
+            theme = "light";
+        }
         if (theme == "light")
             return 0;
         else

@@ -65,6 +65,7 @@ export class ThemeService {
 
     ngOnInit()
     {
+        // console.log("initializing theme...")
         let theme: string | null;
         theme=localStorage.getItem("theme");
         if (theme==null) localStorage.setItem("theme","light");

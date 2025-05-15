@@ -3,10 +3,10 @@ import {FormsModule} from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import {Router} from "@angular/router";
 import {HomeComponent} from "../../home/home.component";
-import {SecurityService} from "../security.service";
-import {User} from "../user";
+import {SecurityService} from "../../../services/security.service";
 import {LinkService} from "../../../services/link.service";
 import {BearBtnComponent, BearInputTextComponent} from 'bear-library';
+import {User} from '../../../entities/User';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +44,8 @@ export class LoginComponent {
                 }
                 else
                 {
-                    sessionStorage.setItem("roles",this.user.roles.toString());
+                    this.securityService.checkLoggedIn();
+                    // sessionStorage.setItem("roles",this.user.roles.toString());
                     this.router.navigateByUrl("");
                 }
 

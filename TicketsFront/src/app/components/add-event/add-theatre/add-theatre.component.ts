@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Theatre} from "../../events/Theatre";
+import {Theatre} from "../../../entities/Theatre";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../../services/link.service";
 

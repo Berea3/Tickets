@@ -9,14 +9,16 @@
 
 <div class="stage">
     <div class="seats">
-        @for(x of [].constructor(rows); track x)
-        {
-            <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
-                @for(x of [].constructor(columns); track x)
-                {
-                    <span class="seat"></span>
-                }
-            </div>
+        @if (this.stage.rowCount!=0 && this.stage.columnCount!=0) {
+            @for(row of map; track row)
+            {
+                <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
+                    @for(col of row; track col)
+                    {
+                        <span class="seat"></span>
+                    }
+                </div>
+            }
         }
     </div>
 </div>

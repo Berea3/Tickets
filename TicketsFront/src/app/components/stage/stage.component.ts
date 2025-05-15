@@ -26,7 +26,7 @@ export class StageComponent {
     rows: number=1;
     columns: number=0;
     zig_zag: boolean=false;
-    map: string;
+    map: string[][]=[];
 
     stage: Stage=new Stage();
 
@@ -34,11 +34,14 @@ export class StageComponent {
 
     ngOnInit()
     {
-        this.map=this.parseString(this.stage.map);
+        this.stage.rowCount=0;
+        this.stage.columnCount=0;
+        // this.map=this.parseString(this.stage.map);
     }
 
     parseString(input: string){
         const lines = input.split('\n'); // Split the input by newline characters
+        lines.pop();
         return lines.map(line => line.trim().split(/\s+/)); // Split each line by spaces and remove extra whitespace
     }
 
@@ -49,12 +52,35 @@ export class StageComponent {
 
     addRow()
     {
-        this.rows++;
+        this.stage.rowCount++;
+        this.stage.matrix="";
+        for (let i=0;i<this.stage.rowCount;i++)
+        {
+            for (let j=0;j<this.stage.columnCount;j++)
+            {
+                this.stage.matrix=this.stage.matrix+"A ";
+            }
+            this.stage.matrix=this.stage.matrix+"\n";
+        }
+        this.map=this.parseString(this.stage.matrix);
+        console.log("bvnksjevnkjs",this.stage.rowCount,this.stage.columnCount,this.stage.matrix);
     }
 
     addColumn()
     {
-        this.columns++;
+        this.stage.columnCount++;
+        this.stage.matrix="";
+        for (let i=0;i<this.stage.rowCount;i++)
+        {
+            for (let j=0;j<this.stage.columnCount;j++)
+            {
+                // console.log("bra");
+                this.stage.matrix=this.stage.matrix+"A ";
+            }
+            this.stage.matrix=this.stage.matrix+"\n";
+        }
+        this.map=this.parseString(this.stage.matrix);
+        console.log("bvnksjevnkjs",this.stage.rowCount,this.stage.columnCount,this.stage.matrix);
     }
 
     isOdd(index: number)

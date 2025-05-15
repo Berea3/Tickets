@@ -20,10 +20,6 @@
     justify-content: center;
 }
 
-/*.seats{*/
-/*    background-color: blue;*/
-/*}*/
-
 .row{
     display: flex;
     width: fit-content;

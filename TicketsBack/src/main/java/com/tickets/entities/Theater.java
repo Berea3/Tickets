@@ -1,5 +1,7 @@
 package com.tickets.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tickets.security.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -11,9 +13,8 @@ import java.util.List;
 public class Theatre {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Long id;
+    private String id;
 
     private String name;
     private int places;
@@ -24,14 +25,20 @@ public class Theatre {
                 cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Attachment> attachments;
 
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user;
+
     public Theatre() {}
 
-    public Theatre(Long id, String name, int places, LocalDate date, List<Attachment> attachments) {
+    public Theatre(String id, String name, int places, LocalDate date, List<Attachment> attachments, User user) {
         this.id = id;
         this.name = name;
         this.places = places;
         this.date = date;
         this.attachments = attachments;
+        this.user=user;
     }
 
     @Override
@@ -51,15 +58,17 @@ public class Theatre {
         attachment.setTheatre(this);
     }
 
-    public Long getId() {return this.id;}
+    public String getId() {return this.id;}
     public String getName() {return this.name;}
     public int getPlaces() {return this.places;}
     private LocalDate getDate() {return this.date;}
     public List<Attachment> getAttachments() {return this.attachments;}
+    public User getUser() {return user;}
 
-    public void setId(Long id) {this.id=id;}
+    public void setId(String id) {this.id=id;}
     public void setName(String name) {this.name=name;}
     public void setPlaces(int places) {this.places=places;}
     public void setDate(LocalDate date) {this.date=date;}
     public void setAttachments(List<Attachment> attachments) {this.attachments=attachments;}
+    public void setUser(User user) {this.user = user;}
 }

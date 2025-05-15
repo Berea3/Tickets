@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../services/link.service";
-import {Theatre} from "../../entities/Theatre";
+import {Theater} from "../../entities/Theater";
 import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
 
@@ -17,7 +17,7 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent {
 
-    theatres: Theatre[];
+    theatres: Theater[];
 
     constructor(private http: HttpClient, private link: LinkService, private router: Router) {
     }

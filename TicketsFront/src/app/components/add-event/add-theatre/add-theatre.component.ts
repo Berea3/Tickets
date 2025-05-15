@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Theatre} from "../../../entities/Theatre";
+import {Theater} from "../../../entities/Theater";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../../services/link.service";
 
@@ -16,7 +16,7 @@ import {LinkService} from "../../../services/link.service";
 })
 export class AddTheatreComponent {
 
-    theatre: Theatre=new Theatre();
+    theatre: Theater=new Theater();
     newFiles: File[]=[];
 
     constructor(private http: HttpClient, private link: LinkService) {}

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import {Theatre} from "../../events/Theatre";
 import {LinkService} from "../../../services/link.service";
 import {ActivatedRoute} from "@angular/router";
+import {Theatre} from '../../../entities/Theatre';
 
 @Component({
   selector: 'app-theatre-view',

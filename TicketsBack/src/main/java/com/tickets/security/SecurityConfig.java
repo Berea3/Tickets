@@ -51,6 +51,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authorizeHttpRequests(config -> config
+                .requestMatchers("/theatres/create").hasAuthority("organizer")      // theatres
+
                 .requestMatchers("/security/unauthenticated").permitAll()   // this works without logging in, for example for sign up
                 .requestMatchers("/portfolio").permitAll()     // this is for sockets
                 .requestMatchers("/theatres/getAll").permitAll()
@@ -58,7 +60,6 @@ public class SecurityConfig {
                 .requestMatchers("/theatres/read/attachment/{id}").permitAll()
                 .requestMatchers("/security/sign-up").permitAll()
                 .requestMatchers("/security/admin").hasAuthority("admin")
-                .requestMatchers("/theatres/create").hasAuthority("organizer")
                 .requestMatchers("/sendEmail").permitAll()
                 .requestMatchers("/ai").permitAll()
                 .anyRequest().authenticated());

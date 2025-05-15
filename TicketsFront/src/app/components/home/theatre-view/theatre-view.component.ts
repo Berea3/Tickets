@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../../services/link.service";
 import {ActivatedRoute} from "@angular/router";
-import {Theatre} from '../../../entities/Theatre';
+import {Theater} from '../../../entities/Theater';
 
 @Component({
   selector: 'app-theatre-view',
@@ -13,7 +13,7 @@ import {Theatre} from '../../../entities/Theatre';
 })
 export class TheatreViewComponent {
 
-    theatre: Theatre=new Theatre();
+    theatre: Theater=new Theater();
 
     constructor(private http: HttpClient, private link: LinkService, private route: ActivatedRoute) {
     }

@@ -7,6 +7,12 @@ import {AddTheatreComponent} from './components/add-event/add-theatre/add-theatr
 import {TheatreViewComponent} from './components/home/theatre-view/theatre-view.component';
 import {StageComponent} from './components/stage/stage.component';
 import {SocketComponent} from './components/socket/socket.component';
+import {authGuard} from './services/auth.guard';
+import {ManageComponent} from './components/settings/manage/manage.component';
+import {ProfileComponent} from './components/settings/profile/profile.component';
+import {AddConcertComponent} from './components/add-event/add-concert/add-concert.component';
+import {AddMovieComponent} from './components/add-event/add-movie/add-movie.component';
+import {AddSportComponent} from './components/add-event/add-sport/add-sport.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -16,5 +22,14 @@ export const routes: Routes = [
     { path: 'add-event/add-theatre', component: AddTheatreComponent },
     { path: 'events/theatres/:id', component: TheatreViewComponent },
     { path: 'socket', component: SocketComponent },
-    { path: 'stage', component: StageComponent }
+
+    { path: 'manage', component: ManageComponent, canActivate: [authGuard] },
+    { path: 'add-stage', component: StageComponent},    //canActivate: [authGuard]
+    { path: 'add/theatre', component: AddTheatreComponent, canActivate: [authGuard] },
+    { path: 'add/concert', component: AddConcertComponent, canActivate: [authGuard] },
+    { path: 'add/movie', component: AddMovieComponent, canActivate: [authGuard] },
+    { path: 'add/sport', component: AddSportComponent, canActivate: [authGuard] },
+
+
+    { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
 ];

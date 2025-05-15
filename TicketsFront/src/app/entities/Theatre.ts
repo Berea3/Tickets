@@ -1,4 +1,4 @@
-import {Attachment} from "../../entities/Attachment";
+import {Attachment} from "./Attachment";
 
 export class Theatre{
     id: number;

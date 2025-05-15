@@ -1,6 +1,6 @@
 import {Attachment} from "./Attachment";
 
-export class Theatre{
+export class Theater {
     id: number;
 
     name: string;

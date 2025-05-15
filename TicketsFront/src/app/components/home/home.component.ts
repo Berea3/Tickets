@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../services/link.service";
-import {Theatre} from "../events/Theatre";
+import {Theatre} from "../../entities/Theatre";
 import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
 

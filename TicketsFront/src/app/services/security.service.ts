@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {User} from "../components/security/User";
 import {LinkService} from './link.service';
 import {HttpClient} from '@angular/common/http';
 import {Auth} from '../entities/Auth';
+import {User} from '../entities/User';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,7 @@ export class SecurityService {
 
     getRole()
     {
+        return this.user.roles;
         // console.log(sessionStorage.getItem("roles"));
         return sessionStorage.getItem("roles");
     }

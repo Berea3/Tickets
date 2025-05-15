@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="menu">
+    <bear-btn type="info" routerLink="/add-event">Add event</bear-btn>
+    <bear-btn type="info">Add stage</bear-btn>
+    <bear-input-checkbox type="info">hellou</bear-input-checkbox>
+    <bear-btn type="accent">Add stage</bear-btn>
+</div>
+
+<div *ngIf="1">
+    vjsdn
+</div>
+
+<div class="container">
+    <div class="tabs">
+        <button
+            class="tab-button"
+            [class.active]="selectedTab === 'events'"
+            (click)="selectedTab = 'events'"
+        >
+            Events
+        </button>
+        <button
+            class="tab-button"
+            [class.active]="selectedTab === 'places'"
+            (click)="selectedTab = 'places'"
+        >
+            Places
+        </button>
+    </div>
+
+    <div class="content">
+        <div *ngIf="selectedTab === 'events'">
+            <div class="item" *ngFor="let event of events">
+                <h3>{{ event.title }}</h3>
+                <p>{{ event.description }}</p>
+            </div>
+        </div>
+
+        <div *ngIf="selectedTab === 'places'">
+            <div class="item" *ngFor="let place of places">
+                <h3>{{ place.name }}</h3>
+                <p>{{ place.location }}</p>
+            </div>
+        </div>
+    </div>
+</div>

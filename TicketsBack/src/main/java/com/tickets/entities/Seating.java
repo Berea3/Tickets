@@ -10,6 +10,8 @@ public class Seating {
     @Column(name="id")
     private String id;
 
+    private String name;
+
     private int rowCount;
     private int columnCount;
     private boolean zigzag;
@@ -20,7 +22,8 @@ public class Seating {
     public Seating() {
     }
 
-    public Seating(String id, int rowCount, int columnCount, boolean zigzag, String matrix) {
+    public Seating(String id, String name, int rowCount, int columnCount, boolean zigzag, String matrix) {
+        this.name=name;
         this.id = id;
         this.rowCount = rowCount;
         this.columnCount = columnCount;
@@ -30,6 +33,10 @@ public class Seating {
 
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getRowCount() {
@@ -51,6 +58,10 @@ public class Seating {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setRowCount(int rowCount) {

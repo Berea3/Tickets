@@ -3,13 +3,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Theater} from "../../../entities/Theater";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../../services/link.service";
+import {HeaderComponent} from '../../header/header.component';
 
 @Component({
   selector: 'app-add-theatre',
   standalone: true,
     imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HeaderComponent
     ],
   templateUrl: './add-theatre.component.html',
   styleUrl: './add-theatre.component.css'

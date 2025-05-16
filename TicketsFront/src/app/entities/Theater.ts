@@ -1,6 +1,4 @@
 import {Attachment} from "./Attachment";
-import {Time} from '@angular/common';
-import {Timestamp} from 'rxjs';
 
 export class Theater {
     id: number;

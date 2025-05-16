@@ -2,12 +2,20 @@
 
 <form class="form">
     <input type="text" [(ngModel)]="theatre.name" name="name">
-    <input type="number" [(ngModel)]="theatre.places" name="places">
+
+    <bear-input-text (textChanged)="setEmail($event)">Email</bear-input-text>
 
 <!--    <span class="btn">-->
     <input type="file" (change)="onFileAdded($event)" accept=".doc,.docx,.pdf" multiple class="fileInput">
     <input type="date" >
     <input type="time">
+
+    <select>
+        @for(seating of seatings; track seating)
+        {
+            <option>{{seating.name}}</option>
+        }
+    </select>
 <!--        Add File-->
 <!--    </span>-->
 

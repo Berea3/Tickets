@@ -4,6 +4,8 @@ import {Theater} from "../../../entities/Theater";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../../services/link.service";
 import {HeaderComponent} from '../../header/header.component';
+import {BearInputTextComponent} from 'bear-library';
+import {Seating} from '../../../entities/Seating';
 
 @Component({
   selector: 'app-add-theatre',
@@ -11,7 +13,8 @@ import {HeaderComponent} from '../../header/header.component';
     imports: [
         FormsModule,
         ReactiveFormsModule,
-        HeaderComponent
+        HeaderComponent,
+        BearInputTextComponent
     ],
   templateUrl: './add-theatre.component.html',
   styleUrl: './add-theatre.component.css'
@@ -19,9 +22,19 @@ import {HeaderComponent} from '../../header/header.component';
 export class AddTheatreComponent {
 
     theatre: Theater=new Theater();
+    seatings: Seating[];
     newFiles: File[]=[];
 
     constructor(private http: HttpClient, private link: LinkService) {}
+
+    ngOnInit()
+    {
+        this.http.get(this.link.url+"/seating/getAll").subscribe(
+            (response: any)=>{
+                this.seatings=response;
+            }
+        );
+    }
 
     onFileAdded(event: any)
     {

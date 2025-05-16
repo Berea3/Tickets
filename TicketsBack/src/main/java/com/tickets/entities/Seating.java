@@ -3,7 +3,7 @@ package com.tickets.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="stages")
+@Table(name="seatings")
 public class Seating {
 
     @Id
@@ -14,6 +14,7 @@ public class Seating {
     private int columnCount;
     private boolean zigzag;
 
+    @Column(length=10000)
     private String matrix;     // yellow orange red green brown blue    A B C D E F   S-space     G-taken
 
     public Seating() {

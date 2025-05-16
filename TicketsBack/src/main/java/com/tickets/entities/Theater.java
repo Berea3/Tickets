@@ -17,6 +17,7 @@ public class Theater {
     private String id;
 
     private String name;
+    private String description;
     private int places;
     private LocalDate date;
 
@@ -32,9 +33,10 @@ public class Theater {
 
     public Theater() {}
 
-    public Theater(String id, String name, int places, LocalDate date, List<Attachment> attachments, User user) {
+    public Theater(String id, String name, String description, int places, LocalDate date, List<Attachment> attachments, User user) {
         this.id = id;
         this.name = name;
+        this.description=description;
         this.places = places;
         this.date = date;
         this.attachments = attachments;
@@ -60,6 +62,7 @@ public class Theater {
 
     public String getId() {return this.id;}
     public String getName() {return this.name;}
+    public String getDescription() {return description;}
     public int getPlaces() {return this.places;}
     private LocalDate getDate() {return this.date;}
     public List<Attachment> getAttachments() {return this.attachments;}
@@ -67,6 +70,7 @@ public class Theater {
 
     public void setId(String id) {this.id=id;}
     public void setName(String name) {this.name=name;}
+    public void setDescription(String description) {this.description = description;}
     public void setPlaces(int places) {this.places=places;}
     public void setDate(LocalDate date) {this.date=date;}
     public void setAttachments(List<Attachment> attachments) {this.attachments=attachments;}

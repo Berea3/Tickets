@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<div class="menu">
+    <bear-btn type="info" (click)="addRow()">add row</bear-btn>
+    <bear-btn type="info" (click)="addColumn()">add column</bear-btn>
+    <bear-input-checkbox type="info" (checkedStateChange)="changeZigZag($event)">hellou</bear-input-checkbox>
+    <bear-btn type="accent" (click)="addStage()">Add seating</bear-btn>
+</div>
+
+<div class="seating">
+    <div class="seats">
+        @if (this.seating.rowCount!=0 && this.seating.columnCount!=0) {
+            @for(row of map; track row)
+            {
+                <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
+                    @for(col of row; track col)
+                    {
+                        <span class="seat"></span>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="theatres")
-public class Theatre {
+@Table(name="theaters")
+public class Theater {
 
     @Id
     @Column(name="id")
@@ -21,7 +21,7 @@ public class Theatre {
     private LocalDate date;
 
     //@JsonIgnore
-    @OneToMany(mappedBy = "theatre",
+    @OneToMany(mappedBy = "theater",
                 cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Attachment> attachments;
 
@@ -30,9 +30,9 @@ public class Theatre {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
-    public Theatre() {}
+    public Theater() {}
 
-    public Theatre(String id, String name, int places, LocalDate date, List<Attachment> attachments, User user) {
+    public Theater(String id, String name, int places, LocalDate date, List<Attachment> attachments, User user) {
         this.id = id;
         this.name = name;
         this.places = places;

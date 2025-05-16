@@ -3,10 +3,10 @@ package com.tickets.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tickets.entities.Attachment;
-import com.tickets.entities.Theatre;
+import com.tickets.entities.Theater;
 import com.tickets.entities.generator.Generator;
 import com.tickets.repositories.AttachmentRepository;
-import com.tickets.repositories.TheatreRepository;
+import com.tickets.repositories.TheaterRepository;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/theatres")
-public class TheatresController {
+public class TheatersController {
 
     @Autowired
-    TheatreRepository theatreRepository;
+    TheaterRepository theaterRepository;
 
     @Autowired
     AttachmentRepository attachmentRepository;
@@ -39,17 +39,17 @@ public class TheatresController {
 
     // CREATE
     @PostMapping(path="/create")
-    public HashMap<String,String> create(@RequestBody Theatre theatre) throws JsonProcessingException
+    public HashMap<String,String> create(@RequestBody Theater theater) throws JsonProcessingException
     {
         ObjectMapper objectMapper=new ObjectMapper();
         User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
-        theatre.setId(Generator.generateId());
-        user.addTheatre(theatre);
+        theater.setId(Generator.generateId());
+        user.addTheatre(theater);
 
-        System.out.println(theatre);
-        theatreRepository.save(theatre);
+        System.out.println(theater);
+        theaterRepository.save(theater);
         HashMap<String,String> response=new HashMap<String, String>();
-        response.put("id",theatre.getId());
+        response.put("id", theater.getId());
         return response;
     }
 
@@ -71,25 +71,25 @@ public class TheatresController {
         attachment.setType(file.getContentType());
         attachment.setName(file.getOriginalFilename());
 
-        Optional<Theatre> optionalTheatre=theatreRepository.findById(id);
-        Theatre theatre=optionalTheatre.get();
+        Optional<Theater> optionalTheatre=theaterRepository.findById(id);
+        Theater theater =optionalTheatre.get();
 
-        theatre.addAttachment(attachment);
-        theatreRepository.save(theatre);
+        theater.addAttachment(attachment);
+        theaterRepository.save(theater);
     }
 
 
     // READ
     @GetMapping(path="/getAll")
-    public List<Theatre> getAll()
+    public List<Theater> getAll()
     {
-        return theatreRepository.findAll();
+        return theaterRepository.findAll();
     }
 
     @GetMapping(path="/getById/{id}")
-    public Optional<Theatre> getById(@PathVariable String id)
+    public Optional<Theater> getById(@PathVariable String id)
     {
-        return theatreRepository.findById(id);
+        return theaterRepository.findById(id);
     }
 
     @GetMapping(path="/read/attachment/{id}")
@@ -109,9 +109,9 @@ public class TheatresController {
 
     // UPDATE
     @PutMapping(path="/update")
-    public void update(@RequestBody Theatre theatre)
+    public void update(@RequestBody Theater theater)
     {
-        theatreRepository.save(theatre);
+        theaterRepository.save(theater);
     }
 
 
@@ -119,6 +119,6 @@ public class TheatresController {
     @DeleteMapping(path="/deleteById/{id}")
     public void delete(@PathVariable String id)
     {
-        theatreRepository.deleteById(id);
+        theaterRepository.deleteById(id);
     }
 }

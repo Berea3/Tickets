@@ -13,8 +13,8 @@ public class Attachment {
 
     @JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="theatre_id", referencedColumnName = "id")
-    private Theatre theatre;
+    @JoinColumn(name="theater_id", referencedColumnName = "id")
+    private Theater theater;
 
     @JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
@@ -30,10 +30,10 @@ public class Attachment {
 
     public Attachment () {}
 
-    public Attachment(Long id, Theatre theatre, Concert concert, String name, String type, byte[] file)
+    public Attachment(Long id, Theater theater, Concert concert, String name, String type, byte[] file)
     {
         this.id = id;
-        this.theatre = theatre;
+        this.theater = theater;
         this.concert = concert;
         this.name = name;
         this.type = type;
@@ -41,14 +41,14 @@ public class Attachment {
     }
 
     public Long getId() {return id;}
-    public Theatre getTheatre() {return theatre;}
+    public Theater getTheatre() {return theater;}
     public Concert getConcert() {return concert;}
     public String getName() {return name;}
     public String getType() {return type;}
     public byte[] getFile() {return file;}
 
     public void setId(Long id) {this.id = id;}
-    public void setTheatre(Theatre theatre) {this.theatre = theatre;}
+    public void setTheatre(Theater theater) {this.theater = theater;}
     public void setConcert(Concert concert) {this.concert = concert;}
     public void setName(String name) {this.name = name;}
     public void setType(String type) {this.type = type;}

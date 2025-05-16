@@ -25,8 +25,9 @@ export const routes: Routes = [
     { path: 'socket', component: SocketComponent },
 
     { path: 'manage', component: ManageComponent, canActivate: [authGuard] },
-    { path: 'add-stage', component: AddLayoutComponent},    //canActivate: [authGuard]
+    { path: 'add-layout', component: AddLayoutComponent},    //canActivate: [authGuard]
     { path: 'add/seating', component: AddSeatingComponent},
+
     { path: 'add-event', component: AddEventComponent },
     { path: 'add/theatre', component: AddTheatreComponent, canActivate: [authGuard] },
     { path: 'add/concert', component: AddConcertComponent, canActivate: [authGuard] },

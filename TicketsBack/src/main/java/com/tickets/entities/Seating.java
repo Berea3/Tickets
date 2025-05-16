@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="stages")
-public class Stage {
+public class Seating {
 
     @Id
     @Column(name="id")
@@ -16,10 +16,10 @@ public class Stage {
 
     private String matrix;     // yellow orange red green brown blue    A B C D E F   S-space     G-taken
 
-    public Stage() {
+    public Seating() {
     }
 
-    public Stage(String id, int rowCount, int columnCount, boolean zigzag, String matrix) {
+    public Seating(String id, int rowCount, int columnCount, boolean zigzag, String matrix) {
         this.id = id;
         this.rowCount = rowCount;
         this.columnCount = columnCount;

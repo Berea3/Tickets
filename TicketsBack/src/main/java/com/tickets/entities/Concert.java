@@ -1,5 +1,7 @@
 package com.tickets.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tickets.security.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +21,11 @@ public class Concert {
     @OneToMany(mappedBy = "concert",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Attachment> attachments;
+
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user;
 
     public Concert() {}
 

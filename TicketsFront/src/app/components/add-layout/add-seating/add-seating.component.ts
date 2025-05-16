@@ -6,6 +6,7 @@ import {BearBtnComponent, BearInputCheckboxComponent} from 'bear-library';
 import {HeaderComponent} from '../../header/header.component';
 import {Seating} from '../../../entities/Seating';
 import {NgClass} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-seating',
@@ -27,7 +28,7 @@ export class AddSeatingComponent {
 
     seating: Seating=new Seating();
 
-    constructor(private http: HttpClient, private link: LinkService) {}
+    constructor(private http: HttpClient, private link: LinkService, private router: Router) {}
 
     ngOnInit()
     {
@@ -44,7 +45,11 @@ export class AddSeatingComponent {
 
     addStage()
     {
-        this.http.post(this.link.url+"/stages/addStage",this.seating).subscribe();
+        this.http.post(this.link.url+"/seating/create",this.seating).subscribe(
+            ()=>{
+                this.router.navigateByUrl("/manage")
+            }
+        );
     }
 
     addRow()

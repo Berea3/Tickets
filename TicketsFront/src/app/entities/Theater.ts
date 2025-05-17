@@ -1,4 +1,5 @@
 import {Attachment} from "./Attachment";
+import {Seating} from './Seating';
 
 export class Theater {
     id: number;
@@ -8,5 +9,6 @@ export class Theater {
     date: Date;
     time: Date;
 
-    attachments: Attachment[]=[];
+    poster: Attachment;
+    seating: Seating;
 }

@@ -55,7 +55,7 @@ public class SecurityConfig {
 
                 .requestMatchers("/security/unauthenticated").permitAll()   // this works without logging in, for example for sign up
                 .requestMatchers("/portfolio").permitAll()     // this is for sockets
-                .requestMatchers("/theatres/getAll").permitAll()
+                .requestMatchers("/theaters/getAll").permitAll()
                 .requestMatchers("/theatres/getById/{id}").permitAll()
                 .requestMatchers("/theatres/read/attachment/{id}").permitAll()
                 .requestMatchers("/security/sign-up").permitAll()

@@ -3,6 +3,7 @@ package com.tickets.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tickets.entities.Attachment;
+import com.tickets.entities.Seating;
 import com.tickets.entities.Theater;
 import com.tickets.entities.generator.Generator;
 import com.tickets.repositories.AttachmentRepository;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/theatres")
+@RequestMapping("/theaters")
 public class TheatersController {
 
     @Autowired
@@ -45,6 +46,9 @@ public class TheatersController {
         User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
         theater.setId(Generator.generateId());
         user.addTheatre(theater);
+        Seating seating=theater.getSeating();
+        seating.setId(Generator.generateId());
+        seating.setFree(false);
 
         System.out.println(theater);
         theaterRepository.save(theater);
@@ -53,28 +57,19 @@ public class TheatersController {
         return response;
     }
 
-//    @PostMapping(path="/create")
-//    public void create(@RequestBody Theatre theatre)
-//    {
-//        System.out.println(theatre);
-//        theatreRepository.save(theatre);
-////        HashMap<String,Long> response=new HashMap<String, Long>();
-////        response.put("id",theatre.getId());
-////        return response;
-//    }
-
-    @PostMapping(path="/create/file/{id}")
+    @PostMapping(path="/setFile/{id}")
     public void createFile(@RequestParam("file")MultipartFile file, @PathVariable("id") String id) throws IOException {
         Attachment attachment=new Attachment();
 
+        attachment.setId(Generator.generateId());
         attachment.setFile(file.getBytes());
         attachment.setType(file.getContentType());
         attachment.setName(file.getOriginalFilename());
 
         Optional<Theater> optionalTheatre=theaterRepository.findById(id);
-        Theater theater =optionalTheatre.get();
+        Theater theater=optionalTheatre.get();
 
-        theater.addAttachment(attachment);
+        theater.setPoster(attachment);
         theaterRepository.save(theater);
     }
 

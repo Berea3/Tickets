@@ -23,7 +23,8 @@ export class AddTheatreComponent {
 
     theatre: Theater=new Theater();
     seatings: Seating[];
-    newFiles: File[]=[];
+    newFile: File;
+    seatingId: string;
 
     constructor(private http: HttpClient, private link: LinkService) {}
 
@@ -38,34 +39,46 @@ export class AddTheatreComponent {
 
     onFileAdded(event: any)
     {
-        console.log(event);
-        for (let i=0;i<event.target.files.length;i++)
-        {
-            if (event.target.files[i].size>10000000)
-            {
-                console.log("files are too big");
-                continue;
-            }
-            this.newFiles.push(event.target.files[i]);
-        }
+        // console.log(event);
+        // for (let i=0;i<event.target.files.length;i++)
+        // {
+        //     if (event.target.files[i].size>10000000)
+        //     {
+        //         console.log("files are too big");
+        //         continue;
+        //     }
+        //     this.newFiles.push(event.target.files[i]);
+        // }
+        this.newFile=event.target.files[0];
     }
 
     onSubmit()
     {
-        this.http.post(this.link.url+"/theatres/create",this.theatre).subscribe(
+        const newSeating=this.seatings.find((seating)=>seating.id===this.seatingId);
+        if (newSeating==undefined) this.theatre.seating=new Seating();
+        else this.theatre.seating=newSeating;
+        this.http.post(this.link.url+"/theaters/create",this.theatre).subscribe(
             (response: any)=>{
                 console.log(response);
                 if (response.id==null) console.log("null id");
                 else
                 {
-                    for (let i=0;i<this.newFiles.length;i++)
-                    {
-                        const formData=new FormData();
-                        formData.append('file',this.newFiles[i]);
-                        this.http.post(this.link.url+'/theatres/create/file/'+response.id,formData).subscribe();
-                    }
+                    const formData=new FormData();
+                    formData.append('file',this.newFile);
+                    this.http.post(this.link.url+'/theaters/setFile/'+response.id,formData).subscribe();
                 }
             }
         );
     }
+
+    setName(name: string)
+    {
+        this.theatre.name=name;
+    }
+
+    setDescription(description: string)
+    {
+        this.theatre.description=description;
+    }
+
 }

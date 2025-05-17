@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Stage} from '../../../entities/Stage';
 import {HttpClient} from '@angular/common/http';
 import {LinkService} from '../../../services/link.service';
-import {BearBtnComponent, BearInputCheckboxComponent} from 'bear-library';
+import {BearBtnComponent, BearInputCheckboxComponent, BearInputTextComponent} from 'bear-library';
 import {HeaderComponent} from '../../header/header.component';
 import {Seating} from '../../../entities/Seating';
 import {NgClass} from '@angular/common';
@@ -14,7 +14,8 @@ import {Router} from '@angular/router';
         BearBtnComponent,
         BearInputCheckboxComponent,
         HeaderComponent,
-        NgClass
+        NgClass,
+        BearInputTextComponent
     ],
   templateUrl: './add-seating.component.html',
   styleUrl: './add-seating.component.css'
@@ -93,5 +94,10 @@ export class AddSeatingComponent {
     changeZigZag(isChecked: boolean)
     {
         this.zig_zag=isChecked;
+    }
+
+    setName(name: string)
+    {
+        this.seating.name=name;
     }
 }

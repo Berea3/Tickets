@@ -1,11 +1,11 @@
 <app-header></app-header>
 
-@for (theatre of theatres; track theatre)
+@for (theater of theaters; track theater)
 {
-    <div (click)="openTheatre(theatre.id)">
-        <span>{{theatre.name}}</span>
-        <span>{{ theatre.places }}</span>
-        <span>{{ theatre.id }}</span>
+    <div (click)="openTheatre(theater.id)">
+        <span>{{theater.name}}</span>
+<!--        <span>{{ theater.places }}</span>-->
+        <span>{{ theater.id }}</span>
     </div>
 }
 <!--<div *ngFor="theatres">-->

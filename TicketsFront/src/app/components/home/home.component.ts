@@ -17,7 +17,7 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent {
 
-    theatres: Theater[];
+    theaters: Theater[];
 
     constructor(private http: HttpClient, private link: LinkService, private router: Router) {
     }
@@ -30,9 +30,9 @@ export class HomeComponent {
         //     }
         // );
 
-        this.http.get(this.link.url+"/theatres/getAll").subscribe(
+        this.http.get(this.link.url+"/theaters/getAll").subscribe(
             (data: any)=>{
-                this.theatres=data;
+                this.theaters=data;
                 console.log(data);
             }
         )

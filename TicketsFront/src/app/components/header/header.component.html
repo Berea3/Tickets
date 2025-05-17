@@ -11,7 +11,7 @@
     <div class="accountMenu">
 <!--        <bear-btn  *ngIf="isOrganizer()" routerLink="add-event">Add event</bear-btn>-->
 <!--        <bear-btn  *ngIf="isOrganizer()" routerLink="add-stage">Add stage</bear-btn>-->
-        <bear-btn *ngIf="isLoggedIn() && isOrganizer()" routerLink="manage">Manage</bear-btn>
+        <bear-btn *ngIf="isLoggedIn() && isOrganizer()" routerLink="/manage">Manage</bear-btn>
 <!--        <bear-btn *ngIf="isLoggedIn() && !isOrganizer()" routerLink="/profile">Profile</bear-btn>-->
         <bear-btn *ngIf="isLoggedIn()">Log out</bear-btn>
         <bear-btn [routerLink]="['login']" *ngIf="!isLoggedIn()">Login</bear-btn>

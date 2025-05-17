@@ -4,17 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="attachments")
 public class Attachment {
 
     @Id
-    @GeneratedValue
     @Column(name="id")
-    private Long id;
+    private String id;
 
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="theater_id", referencedColumnName = "id")
-    private Theater theater;
+//    @JsonIgnore
+//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinColumn(name="theater_id", referencedColumnName = "id")
+//    private Theater theater;
 
     @JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
@@ -30,25 +30,22 @@ public class Attachment {
 
     public Attachment () {}
 
-    public Attachment(Long id, Theater theater, Concert concert, String name, String type, byte[] file)
+    public Attachment(String id, Concert concert, String name, String type, byte[] file)
     {
         this.id = id;
-        this.theater = theater;
         this.concert = concert;
         this.name = name;
         this.type = type;
         this.file = file;
     }
 
-    public Long getId() {return id;}
-    public Theater getTheatre() {return theater;}
+    public String getId() {return id;}
     public Concert getConcert() {return concert;}
     public String getName() {return name;}
     public String getType() {return type;}
     public byte[] getFile() {return file;}
 
-    public void setId(Long id) {this.id = id;}
-    public void setTheatre(Theater theater) {this.theater = theater;}
+    public void setId(String id) {this.id = id;}
     public void setConcert(Concert concert) {this.concert = concert;}
     public void setName(String name) {this.name = name;}
     public void setType(String type) {this.type = type;}

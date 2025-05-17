@@ -15,6 +15,7 @@ public class Seating {
     private int rowCount;
     private int columnCount;
     private boolean zigzag;
+    private boolean free;
 
     @Column(length=10000)
     private String matrix;     // yellow orange red green brown blue    A B C D E F   S-space     G-taken
@@ -22,12 +23,13 @@ public class Seating {
     public Seating() {
     }
 
-    public Seating(String id, String name, int rowCount, int columnCount, boolean zigzag, String matrix) {
+    public Seating(String id, String name, int rowCount, int columnCount, boolean zigzag, boolean free, String matrix) {
         this.name=name;
         this.id = id;
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.zigzag = zigzag;
+        this.free=free;
         this.matrix = matrix;
     }
 
@@ -50,6 +52,8 @@ public class Seating {
     public boolean getZigzag() {
         return zigzag;
     }
+
+    public boolean getFree(){return free;}
 
     public String getMatrix() {
         return matrix;
@@ -75,6 +79,8 @@ public class Seating {
     public void setZigzag(boolean zigzag) {
         this.zigzag = zigzag;
     }
+
+    public void setFree(boolean free){this.free=free;}
 
     public void setMatrix(String matrix) {
         this.matrix = matrix;

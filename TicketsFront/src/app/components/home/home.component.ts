@@ -3,7 +3,7 @@ import {HeaderComponent} from "../header/header.component";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../services/link.service";
 import {Theater} from "../../entities/Theater";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 
 @Component({
@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
   standalone: true,
     imports: [
         HeaderComponent,
+        NgIf,
     ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -19,7 +20,7 @@ export class HomeComponent {
 
     theaters: Theater[];
 
-    constructor(private http: HttpClient, private link: LinkService, private router: Router) {
+    constructor(private http: HttpClient, protected link: LinkService, private router: Router) {
     }
 
     ngOnInit()

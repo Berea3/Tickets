@@ -78,17 +78,20 @@ public class TheatersController {
     @GetMapping(path="/getAll")
     public List<Theater> getAll()
     {
+        System.out.println("brraaaa");
+        System.out.println(theaterRepository.findAll());
         return theaterRepository.findAll();
     }
 
     @GetMapping(path="/getById/{id}")
     public Optional<Theater> getById(@PathVariable String id)
     {
+        System.out.println(this.theaterRepository.findById(id).get());
         return theaterRepository.findById(id);
     }
 
     @GetMapping(path="/read/attachment/{id}")
-    public ResponseEntity<Resource> readAttachment(@PathVariable Long id)
+    public ResponseEntity<Resource> readAttachment(@PathVariable String id)
     {
         var optionalFile=attachmentRepository.findById(id);
 
@@ -96,8 +99,8 @@ public class TheatersController {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(file.getType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\""+file.getName()+"\"") //in cazul in care se vrea display in browser
-//                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+file.getName()+"\"")
+//                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\""+file.getName()+"\"") //in cazul in care se vrea display in browser
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+file.getName()+"\"")
                 .body(new ByteArrayResource(file.getFile()));
     }
 

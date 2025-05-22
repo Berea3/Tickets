@@ -3,6 +3,7 @@ import {RouterLink} from "@angular/router";
 import {SecurityService} from "../../services/security.service";
 import {NgIf} from "@angular/common";
 import {BearBtnComponent} from 'bear-library';
+import {TranslatePipe} from '../../services/translate.pipe';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ import {BearBtnComponent} from 'bear-library';
     imports: [
         RouterLink,
         NgIf,
-        BearBtnComponent
+        BearBtnComponent,
+        TranslatePipe
     ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

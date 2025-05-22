@@ -2,10 +2,10 @@
     <a [routerLink]="['']" class="homeLink"><h1>Tickets</h1></a>
 
     <div class="mainMenu">
-        <bear-btn>Theatres</bear-btn>
-        <bear-btn>Concerts</bear-btn>
-        <bear-btn>Movies</bear-btn>
-        <bear-btn>Sport events</bear-btn>
+        <bear-btn [routerLink]="['/theaters']">{{'Theaters'|translate}}</bear-btn>
+        <bear-btn [routerLink]="['/concerts']">{{ 'Concerts'|translate }}</bear-btn>
+        <bear-btn [routerLink]="['/movies']">{{ 'Movies'|translate }}</bear-btn>
+        <bear-btn [routerLink]="['/sports']">{{ 'Sport_events'|translate }}</bear-btn>
     </div>
 
     <div class="accountMenu">

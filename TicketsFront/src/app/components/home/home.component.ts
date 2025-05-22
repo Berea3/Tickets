@@ -25,12 +25,6 @@ export class HomeComponent {
 
     ngOnInit()
     {
-        // this.http.get("http://localhost:1201/security").subscribe(
-        //     (response: any) => {
-        //         console.log(response);
-        //     }
-        // );
-
         this.http.get(this.link.url+"/theaters/getAll").subscribe(
             (data: any)=>{
                 this.theaters=data;

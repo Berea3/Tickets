@@ -15,11 +15,26 @@ import {AddMovieComponent} from './components/add-event/add-movie/add-movie.comp
 import {AddSportComponent} from './components/add-event/add-sport/add-sport.component';
 import {AddLayoutComponent} from './components/add-layout/add-layout.component';
 import {AddSeatingComponent} from './components/add-layout/add-seating/add-seating.component';
+import {TheatersPageComponent} from './components/home/events-pages/theaters-page/theaters-page.component';
+import {ConcertsPageComponent} from './components/home/events-pages/concerts-page/concerts-page.component';
+import {MoviesPageComponent} from './components/home/events-pages/movies-page/movies-page.component';
+import {SportsPageComponent} from './components/home/events-pages/sports-page/sports-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
+
+    { path: 'theaters', component: TheatersPageComponent },   // events pages
+    { path: 'concerts', component: ConcertsPageComponent },
+    { path: 'movies', component: MoviesPageComponent },
+    { path: 'sports', component: SportsPageComponent },
+
+    { path: 'theaters/:id', component: TheatersPageComponent },   // view event pages
+    { path: 'concerts/:id', component: ConcertsPageComponent },
+    { path: 'movies/:id', component: MoviesPageComponent },
+    { path: 'sports/:id', component: SportsPageComponent },
+
     { path: 'add-event/add-theatre', component: AddTheatreComponent },
     { path: 'events/theatres/:id', component: TheatreViewComponent },
     { path: 'socket', component: SocketComponent },
@@ -35,5 +50,5 @@ export const routes: Routes = [
     { path: 'add/sport', component: AddSportComponent, canActivate: [authGuard] },
 
 
-    { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+    { path: 'profile', component: ProfileComponent },
 ];

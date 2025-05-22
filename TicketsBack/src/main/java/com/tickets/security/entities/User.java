@@ -59,9 +59,16 @@ public class User {
 
     public void addTheatre(Theater theater)
     {
-        if (this.theaters ==null) {this.theaters =new ArrayList<>();}
+        if (this.theaters==null) {this.theaters=new ArrayList<>();}
         this.theaters.add(theater);
         theater.setUser(this);
+    }
+
+    public void addConcert(Concert concert)
+    {
+        if (this.concerts==null) {this.concerts=new ArrayList<>();}
+        this.concerts.add(concert);
+        concert.setUser(this);
     }
 
     public String getId() {return this.id;}

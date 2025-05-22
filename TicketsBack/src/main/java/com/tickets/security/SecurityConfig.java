@@ -51,9 +51,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authorizeHttpRequests(config -> config
+
                 .requestMatchers("/theaters/create").hasAuthority("organizer")      // theatres
                 .requestMatchers("/theaters/getAll").permitAll()
                 .requestMatchers("/theaters/getById/{id}").permitAll()
+
+                .requestMatchers("/concerts/getAll").permitAll()
 
                 .requestMatchers("/files/findById/{id}").permitAll()    //  poster request
 

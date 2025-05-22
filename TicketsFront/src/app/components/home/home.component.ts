@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent {
 
-    theaters: Theater[];
+    theaters: Theater[];    // will change to event
 
     constructor(private http: HttpClient, protected link: LinkService, private router: Router) {
     }
@@ -39,7 +39,7 @@ export class HomeComponent {
         )
     }
 
-    openTheatre(id: number)
+    openTheatre(id: string)
     {
         this.router.navigateByUrl("/events/theatres/"+id);
     }

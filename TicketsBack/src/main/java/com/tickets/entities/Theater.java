@@ -6,15 +6,11 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="theaters")
 public class Theater {
-
     @Id
-    @Column(name="id")
     private String id;
 
     private String name;

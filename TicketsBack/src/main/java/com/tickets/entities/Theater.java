@@ -47,33 +47,13 @@ public class Theater {
         this.user=user;
     }
 
-    @Override
-    public String toString() {
-        return "Theatre{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", poster=" + poster +
-                '}';
-    }
-
-//    public void addAttachment(Attachment attachment)
-//    {
-//        if (attachments==null) {attachments=new ArrayList<>();}
-//        attachments.add(attachment);
-//        attachment.setTheatre(this);
-//    }
-
     public String getId() {return this.id;}
     public String getName() {return this.name;}
     public String getDescription() {return description;}
-    private LocalDate getDate() {return this.date;}
+    public LocalDate getDate() {return this.date;}
     public LocalTime getTime() {return time;}
     public Attachment getPoster() {return this.poster;}
-
-    public Seating getSeating() {
-        return seating;
-    }
-
+    public Seating getSeating() {return seating;}
     public User getUser() {return user;}
 
     public void setId(String id) {this.id=id;}
@@ -82,10 +62,20 @@ public class Theater {
     public void setDate(LocalDate date) {this.date=date;}
     public void setTime(LocalTime time) {this.time = time;}
     public void setPoster(Attachment poster) {this.poster=poster;}
-
-    public void setSeating(Seating seating) {
-        this.seating = seating;
-    }
-
+    public void setSeating(Seating seating) {this.seating = seating;}
     public void setUser(User user) {this.user = user;}
+
+    @Override
+    public String toString() {
+        return "Theater{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                ", poster=" + poster +
+                ", seating=" + seating +
+                ", user=" + user +
+                '}';
+    }
 }

@@ -2,7 +2,7 @@ import {Attachment} from "./Attachment";
 import {Seating} from './Seating';
 
 export class Theater {
-    id: number;
+    id: string;
 
     name: string;
     description: string;

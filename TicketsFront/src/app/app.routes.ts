@@ -25,6 +25,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
 
+    // events pages
     { path: 'theaters', component: TheatersPageComponent },   // events pages
     { path: 'concerts', component: ConcertsPageComponent },
     { path: 'movies', component: MoviesPageComponent },

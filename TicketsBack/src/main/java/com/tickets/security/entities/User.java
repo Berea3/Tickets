@@ -71,17 +71,48 @@ public class User {
         concert.setUser(this);
     }
 
+    public void addMovie(Movie movie)
+    {
+        if (this.movies==null) {this.movies=new ArrayList<>();}
+        this.movies.add(movie);
+        movie.setUser(this);
+    }
+
     public String getId() {return this.id;}
     public String getPassword() {return this.password;}
     public String getEmail() {return this.email;}
     public String getRoles() {return this.roles;}
     public List<Theater> getTheaters() {return theaters;}
 
+    public List<Concert> getConcerts() {
+        return concerts;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public List<Sport> getSports() {
+        return sports;
+    }
+
     public void setId(String id) {this.id=id;}
     public void setPassword(String password) {this.password=password;}
     public void setEmail(String email) {this.email=email;}
     public void setRoles(String roles) {this.roles=roles;}
     public void setTheaters(List<Theater> theaters) {this.theaters = theaters;}
+
+    public void setConcerts(List<Concert> concerts) {
+        this.concerts = concerts;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public void setSports(List<Sport> sports) {
+        this.sports = sports;
+    }
 
     @Override
     public String toString() {

@@ -1,1 +1,20 @@
-<p>add-movie works!</p>
+<app-header></app-header>
+
+<form class="form">
+    <bear-input-text (textChanged)="setName($event)">Name</bear-input-text>
+
+    <bear-input-text (textChanged)="setDescription($event)">Description</bear-input-text>
+
+    <input type="file" (change)="onFileAdded($event)" accept=".doc,.docx,.pdf" multiple class="fileInput">
+    <input type="date" [(ngModel)]="movie.date" name="date">
+    <input type="time" [(ngModel)]="movie.time" name="time">
+
+    <select [(ngModel)]="seatingId" name="seating">
+        @for(seating of seatings; track seating)
+        {
+            <option value="{{seating.id}}">{{seating.name}}</option>
+        }
+    </select>
+
+    <button (click)="onSubmit()">Add event</button>
+</form>

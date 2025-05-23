@@ -1,0 +1,28 @@
+.events{
+    width: 50rem;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.event{
+    display: grid;
+    grid-template-columns: 20% 20% 40% 20%;
+    height: 10rem;
+    border-bottom: solid rgb(230,230,230);
+    border-bottom-width: 0.1rem;
+}
+
+.poster{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 8rem;
+    object-fit: cover;
+}
+
+.event span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

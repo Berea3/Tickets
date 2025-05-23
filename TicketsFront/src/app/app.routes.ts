@@ -4,7 +4,7 @@ import {LoginComponent} from './components/security/login/login.component';
 import {SignUpComponent} from './components/security/sign-up/sign-up.component';
 import {AddEventComponent} from './components/add-event/add-event.component';
 import {AddTheatreComponent} from './components/add-event/add-theatre/add-theatre.component';
-import {TheatreViewComponent} from './components/home/theatre-view/theatre-view.component';
+import {TheatreViewComponent} from './components/home/view-event-pages/theatre-view/theatre-view.component';
 import {StageComponent} from './components/stage/stage.component';
 import {SocketComponent} from './components/socket/socket.component';
 import {authGuard} from './services/auth.guard';

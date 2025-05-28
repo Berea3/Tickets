@@ -1,10 +1,8 @@
 package com.tickets.security.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tickets.entities.Concert;
-import com.tickets.entities.Movie;
-import com.tickets.entities.Sport;
-import com.tickets.entities.Theater;
+import com.tickets.entities.*;
+import com.tickets.entities.tickets.TheaterTicket;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -43,18 +41,29 @@ public class User {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Sport> sports;
 
-    public User()
-    {
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Seating> seatings;
 
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<TheaterTicket> theaterTickets;
 
-    public User(String id, String email, String password, String roles, List<Theater> theaters)
-    {
+    public User(){}
+
+    public User(String id, String email, String password, String roles, List<Theater> theaters, List<Concert> concerts, List<Movie> movies, List<Sport> sports, List<Seating> seatings, List<TheaterTicket> theaterTickets) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.roles = roles;
         this.theaters = theaters;
+        this.concerts = concerts;
+        this.movies = movies;
+        this.sports = sports;
+        this.seatings = seatings;
+        this.theaterTickets = theaterTickets;
     }
 
     public void addTheatre(Theater theater)
@@ -76,6 +85,20 @@ public class User {
         if (this.movies==null) {this.movies=new ArrayList<>();}
         this.movies.add(movie);
         movie.setUser(this);
+    }
+
+    public void addSport(Sport sport)
+    {
+        if (this.sports==null) {this.sports=new ArrayList<>();}
+        this.sports.add(sport);
+//        sport.setUser(this);
+    }
+
+    public void addSeating(Seating seating)
+    {
+        if (this.seatings==null) {this.seatings=new ArrayList<>();}
+        this.seatings.add(seating);
+        seating.setUser(this);
     }
 
     public String getId() {return this.id;}

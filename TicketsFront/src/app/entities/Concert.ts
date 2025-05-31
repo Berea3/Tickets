@@ -1,5 +1,5 @@
 import {Attachment} from './Attachment';
-import {Seating} from './Seating';
+import {User} from './User';
 
 export class Concert{
     id: string;
@@ -8,7 +8,10 @@ export class Concert{
     description: string;
     date: Date;
     time: Date;
+    seats: number;
+    availableSeats: number;
+    price: number;
 
     poster: Attachment;
-    seating: Seating;
+    user: User;
 }

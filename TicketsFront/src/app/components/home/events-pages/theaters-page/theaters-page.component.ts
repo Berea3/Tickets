@@ -24,6 +24,7 @@ export class TheatersPageComponent {
 
     ngOnInit()
     {
+        console.log("in theater component")
         this.http.get(this.link.url+"/theaters/getAll").subscribe(
             (data: any)=>{
                 this.theaters=data;

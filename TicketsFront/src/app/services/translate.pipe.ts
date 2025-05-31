@@ -19,7 +19,6 @@ export class TranslatePipe implements PipeTransform {
     }
 
     transform(value: string): any {
-        console.log(this.translations['ro']['Home']);
         if (value && this.translations[this.translate.getLanguage()] && this.translations[this.translate.getLanguage()][value]) return this.translations[this.translate.getLanguage()][value];
         return value;
     }

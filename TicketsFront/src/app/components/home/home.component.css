@@ -10,6 +10,7 @@
     height: 10rem;
     border-bottom: solid rgb(230,230,230);
     border-bottom-width: 0.1rem;
+    align-items: center;
 }
 
 .poster{

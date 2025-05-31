@@ -7,7 +7,7 @@
             <img *ngIf="theater.poster && theater.poster.id" [src]="link.url+'/files/findById/'+theater.poster.id" alt="" class="poster">
             <span>{{theater.date}}</span>
             <span>{{ theater.name }}</span>
-            <span>bilete</span>
+            <span (click)="goToBuyTicket(theater.id)">bilete</span>
         </div>
     }
 </div>

@@ -35,6 +35,11 @@ export class HomeComponent {
 
     openTheatre(id: string)
     {
-        this.router.navigateByUrl("/events/theatres/"+id);
+        this.router.navigateByUrl("/theater/"+id);
+    }
+
+    goToBuyTicket(id: string)
+    {
+        this.router.navigateByUrl("/buy/theater/"+id);
     }
 }

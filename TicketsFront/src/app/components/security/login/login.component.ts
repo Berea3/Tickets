@@ -45,57 +45,10 @@ export class LoginComponent {
                 else
                 {
                     this.securityService.checkLoggedIn();
-                    // sessionStorage.setItem("roles",this.user.roles.toString());
                     this.router.navigateByUrl("");
                 }
-
-                // this.http.get("http://localhost:1201/security/loggedin").subscribe(
-                //     (data: any) =>{
-                //         console.log(data['loggedin']);
-                //         if (data['loggedin']==true) {
-                //             this.router.navigateByUrl("");
-                //             console.log("true");
-                //         }
-                //         if (data['loggedin']==false) {
-                //             alert("wrong credentials");
-                //             console.log("false");
-                //         }
-                //     }
-                // )
-
-
-                // if (response instanceof User)
-                // {
-                //     console.log(response);
-                //     this.router.navigateByUrl("");
-                //     this.securityService.setUser(response);
-                //     sessionStorage.setItem("loggedin","yes")
-                // }
-                // else
-                // {
-                //     alert("wrong credentials");
-                // }
-                // this.user=response;
-                // if (response!="")
-                // {
-                //     console.log(response);
-                //     this.router.navigateByUrl("");
-                //     this.securityService.setUser(response);
-                //     sessionStorage.setItem("loggedin","yes");
-                // }
-                //
-                // else
-                // {
-                //     alert("wrong credentials");
-                // }
-
-                // console.log(response);
-                // this.router.navigateByUrl("");
-                // this.securityService.setUser(response);
-                // sessionStorage.setItem("loggedin","yes")
             }
         );
-        // this.router.redirectTo
         console.log(this.password);
     }
 

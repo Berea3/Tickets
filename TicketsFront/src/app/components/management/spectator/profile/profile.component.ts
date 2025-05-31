@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {HeaderComponent} from '../../header/header.component';
-import {TranslateService} from '../../../services/translate.service';
+import {HeaderComponent} from '../../../header/header.component';
+import {TranslateService} from '../../../../services/translate.service';
 import {HttpClient} from '@angular/common/http';
-import {LinkService} from '../../../services/link.service';
+import {LinkService} from '../../../../services/link.service';
 
 @Component({
   selector: 'app-profile',

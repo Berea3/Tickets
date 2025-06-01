@@ -18,7 +18,7 @@ export class ProfileComponent {
 
     ngOnInit()
     {
-        this.http.get(this.link.url+"/user/getTickets").subscribe(
+        this.http.get(this.link.url+"/spectator/getTickets").subscribe(
             (response: any)=>{
                 console.log(response);
             }

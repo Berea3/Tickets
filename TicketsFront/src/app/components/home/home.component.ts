@@ -17,11 +17,9 @@ import {Router} from "@angular/router";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
     theaters: Theater[];    // will change to event
 
-    constructor(private http: HttpClient, protected link: LinkService, private router: Router) {
-    }
+    constructor(private http: HttpClient, protected link: LinkService, private router: Router) {}
 
     ngOnInit()
     {

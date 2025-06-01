@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<h3>Buy Movie ticket</h3>
+
+<h3>Title: {{this.movie.name}}</h3>
+<h3>Description: {{this.movie.description}}</h3>
+<h3>Date: {{this.movie.date}}</h3>
+<h3>Time: {{this.movie.time}}</h3>
+<bear-btn (click)="buyTicket()">Buy ticket</bear-btn>
+
+<div class="seating">
+    <div class="seats">
+        @if (this.seating.rowCount!=0 && this.seating.columnCount!=0) {
+            @for(row of map; let i=$index; track i)
+            {
+                <div class="row" [ngClass]="{'permuted' : $index%2 && zig_zag}">
+                    @for(col of row; let j=$index; track j)
+                    {
+                        @switch (map[i][j])
+                        {
+                            @case ('A') {
+                                <span class="seat" (click)="selectSeat(i,j)"></span>
+                            }
+
+                            @case ('T') {
+                                <span class="seat taken"></span>
+                            }
+
+                            @case ('R'){
+                                <span class="seat reserved" (click)="selectSeat(i,j)"></span>
+                            }
+                        }
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

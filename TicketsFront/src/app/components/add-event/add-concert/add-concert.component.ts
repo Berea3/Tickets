@@ -21,7 +21,6 @@ import {HeaderComponent} from '../../header/header.component';
 export class AddConcertComponent {
 
     concert: Concert=new Concert();
-    seatings: Seating[];
     newFile: File;
     seatingId: string;
 
@@ -29,11 +28,6 @@ export class AddConcertComponent {
 
     ngOnInit()
     {
-        this.http.get(this.link.url+"/seating/getAll").subscribe(
-            (response: any)=>{
-                this.seatings=response;
-            }
-        );
     }
 
     onFileAdded(event: any)
@@ -43,9 +37,6 @@ export class AddConcertComponent {
 
     onSubmit()
     {
-        const newSeating=this.seatings.find((seating)=>seating.id===this.seatingId);
-        if (newSeating==undefined) this.concert.seating=new Seating();
-        else this.concert.seating=newSeating;
         this.http.post(this.link.url+"/concerts/create",this.concert).subscribe(
             (response: any)=>{
                 if (response.id==null) console.log("null id");
@@ -53,7 +44,7 @@ export class AddConcertComponent {
                 {
                     const formData=new FormData();
                     formData.append('file',this.newFile);
-                    this.http.post(this.link.url+"/concerts/setFile"+response.id,formData).subscribe();
+                    this.http.post(this.link.url+"/concerts/setFile/"+response.id,formData).subscribe();
                 }
             }
         )

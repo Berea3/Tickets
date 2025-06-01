@@ -31,6 +31,11 @@ export class ConcertsPageComponent {
 
     openConcert(id: string)
     {
-        this.router.navigateByUrl("/concerts/"+id);
+        this.router.navigateByUrl("/concert/"+id);
+    }
+
+    goToBuyTicket(id: string)
+    {
+        this.router.navigateByUrl("/buy/concert/"+id);
     }
 }

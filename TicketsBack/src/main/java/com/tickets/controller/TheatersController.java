@@ -6,8 +6,10 @@ import com.tickets.entities.Attachment;
 import com.tickets.entities.Seating;
 import com.tickets.entities.Theater;
 import com.tickets.entities.generator.Generator;
+import com.tickets.entities.tickets.TheaterTicket;
 import com.tickets.repositories.AttachmentRepository;
 import com.tickets.repositories.TheaterRepository;
+import com.tickets.repositories.tickets.TheaterTicketRepository;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,11 @@ public class TheatersController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    private TheaterTicketRepository theaterTicketRepository;
+
+    private final ObjectMapper objectMapper=new ObjectMapper();
+
     // CREATE
     @PostMapping(path="/create")
     public HashMap<String,String> create(@RequestBody Theater theater) throws JsonProcessingException
@@ -45,13 +52,13 @@ public class TheatersController {
         ObjectMapper objectMapper=new ObjectMapper();
         User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
         theater.setId(Generator.generateId());
-        user.addTheatre(theater);
-        Seating seating=theater.getSeating();
+        user.addTheatre(theater);    // the connection is bidirectional
+        Seating seating=theater.getSeating();      //so if the theater of the user is set, then, the user of the theater us saved, and below the theater is saved
         seating.setId(Generator.generateId());
         seating.setFree(false);
 
-        System.out.println(theater);
         theaterRepository.save(theater);
+
         HashMap<String,String> response=new HashMap<String, String>();
         response.put("id", theater.getId());
         return response;
@@ -73,20 +80,35 @@ public class TheatersController {
         theaterRepository.save(theater);
     }
 
+    @PostMapping(path="/buy/{theaterId}")
+    public void buyTicket(@RequestBody TheaterTicket theaterTicket, @PathVariable String theaterId) throws JsonProcessingException
+    {
+        Theater theater=this.theaterRepository.findById(theaterId).get();
+        User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
+        Seating seating=theater.getSeating();
+        seating.setMatrix(seating.getMatrix());
+        int position=(seating.getColumnCount()*2+1)*theaterTicket.getRow()+theaterTicket.getPosition()*2;
+        seating.setMatrix(seating.getMatrix().substring(0,position)+'T'+seating.getMatrix().substring(position+1));
+        theater.setSeating(seating);
+        theater.setSeating(seating);
+        theaterRepository.save(theater);
+        theaterTicket.setUser(user);
+        theaterTicket.setTheater(theater);
+        theaterTicket.setId(Generator.generateId());
+        theaterTicketRepository.save(theaterTicket);
+    }
+
 
     // READ
     @GetMapping(path="/getAll")
     public List<Theater> getAll()
     {
-        System.out.println("brraaaa");
-        System.out.println(theaterRepository.findAll());
         return theaterRepository.findAll();
     }
 
     @GetMapping(path="/getById/{id}")
     public Optional<Theater> getById(@PathVariable String id)
     {
-        System.out.println(this.theaterRepository.findById(id).get());
         return theaterRepository.findById(id);
     }
 

@@ -7,8 +7,11 @@ import com.tickets.entities.Concert;
 import com.tickets.entities.Seating;
 import com.tickets.entities.Theater;
 import com.tickets.entities.generator.Generator;
+import com.tickets.entities.tickets.ConcertTicket;
+import com.tickets.entities.tickets.TheaterTicket;
 import com.tickets.repositories.AttachmentRepository;
 import com.tickets.repositories.ConcertRepository;
+import com.tickets.repositories.tickets.ConcertTicketRepository;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
 import jakarta.persistence.Id;
@@ -40,6 +43,11 @@ public class ConcertController {
     @Autowired
     AttachmentRepository attachmentRepository;
 
+    @Autowired
+    ConcertTicketRepository concertTicketRepository;
+
+    private final ObjectMapper objectMapper=new ObjectMapper();
+
     // CREATE
     @PostMapping(path="/create")
     public HashMap<String,String> create(@RequestBody Concert concert) throws JsonProcessingException
@@ -48,11 +56,7 @@ public class ConcertController {
         User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
         concert.setId(Generator.generateId());
         user.addConcert(concert);
-        Seating seating=concert.getSeating();
-        seating.setId(Generator.generateId());
-        seating.setFree(false);
 
-        System.out.println(concert);
         concertRepository.save(concert);
         HashMap<String,String> response=new HashMap<String, String>();
         response.put("id", concert.getId());
@@ -75,6 +79,18 @@ public class ConcertController {
         this.concertRepository.save(concert);
     }
 
+    @PostMapping("/buy/{concertId}")
+    public void buyTicket(@RequestBody ConcertTicket concertTicket, @PathVariable String concertId) throws JsonProcessingException
+    {
+        Concert concert=this.concertRepository.findById(concertId).get();
+        User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
+        concertTicket.setId(Generator.generateId());
+        concertTicket.setConcert(concert);
+        concertTicket.setUser(user);
+        concertTicket.setPrice(concert.getPrice());
+        this.concertTicketRepository.save(concertTicket);
+    }
+
 
 
     // READ
@@ -82,6 +98,12 @@ public class ConcertController {
     public List<Concert> getAll()
     {
         return this.concertRepository.findAll();
+    }
+
+    @GetMapping("/getById/{id}")
+    public Concert getById(@PathVariable String id)
+    {
+        return this.concertRepository.findById(id).get();
     }
 
     @GetMapping(path="/read/attachment/{id}")

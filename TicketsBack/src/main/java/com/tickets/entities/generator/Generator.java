@@ -8,11 +8,6 @@ public class Generator {
     public static String generateId()
     {
         StringBuilder s=new StringBuilder();
-//        for (char i='a';i<='z';i++) s.append(i);
-//        for (char i='A';i<='Z';i++) s.append(i);
-//        for (char i='0';i<='9';i++) s.append(i);
-//        s.append("!@#$%^&*");
-//        s.append("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*");
         s.append("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
         LocalTime localTime=LocalTime.now();

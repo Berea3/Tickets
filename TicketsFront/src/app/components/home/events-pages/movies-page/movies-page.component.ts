@@ -17,15 +17,16 @@ import {NgIf} from '@angular/common';
   styleUrl: './movies-page.component.css'
 })
 export class MoviesPageComponent {
-    movies: Movie[];
+    movies: Movie[]=[];
 
     constructor(private http: HttpClient, protected link: LinkService, private router: Router) {}
 
     ngOnInit()
     {
         this.http.get(this.link.url+"/movies/getAll").subscribe(
-            (response: any)=>{
-                this.movies=response;
+            (data: any)=>{
+                this.movies=data;
+                console.log(data);
             }
         );
     }
@@ -33,5 +34,10 @@ export class MoviesPageComponent {
     openMovie(id: string)
     {
         this.router.navigateByUrl("/movies/"+id);
+    }
+
+    goToBuyTicket(id: string)
+    {
+        this.router.navigateByUrl("/buy/movie/"+id);
     }
 }

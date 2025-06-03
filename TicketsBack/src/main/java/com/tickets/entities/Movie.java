@@ -1,11 +1,14 @@
 package com.tickets.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tickets.entities.layouts.Seating;
+import com.tickets.entities.tickets.MovieTicket;
 import com.tickets.security.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name="movies")
@@ -31,9 +34,14 @@ public class Movie {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "movie",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<MovieTicket> movieTickets;
+
     public Movie() {}
 
-    public Movie(String id, String name, String description, LocalDate date, LocalTime time, Attachment poster, Seating seating, User user) {
+    public Movie(String id, String name, String description, LocalDate date, LocalTime time, Attachment poster, Seating seating, User user, List<MovieTicket> movieTickets) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -42,6 +50,7 @@ public class Movie {
         this.poster = poster;
         this.seating = seating;
         this.user = user;
+        this.movieTickets = movieTickets;
     }
 
     public String getId() {return id;}
@@ -53,6 +62,10 @@ public class Movie {
     public Seating getSeating() {return seating;}
     public User getUser() {return user;}
 
+    public List<MovieTicket> getMovieTickets() {
+        return movieTickets;
+    }
+
     public void setId(String id) {this.id = id;}
     public void setName(String name) {this.name = name;}
     public void setDescription(String description) {this.description = description;}
@@ -61,4 +74,8 @@ public class Movie {
     public void setPoster(Attachment poster) {this.poster = poster;}
     public void setSeating(Seating seating) {this.seating = seating;}
     public void setUser(User user) {this.user = user;}
+
+    public void setMovieTickets(List<MovieTicket> movieTickets) {
+        this.movieTickets = movieTickets;
+    }
 }

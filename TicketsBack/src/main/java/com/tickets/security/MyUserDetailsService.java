@@ -24,11 +24,11 @@ public class MyUserDetailsService implements UserDetailsService {
 //        System.out.println(username);
 //        ObjectMapper mapper=new ObjectMapper();
 //        String username=mapper.readValue(userJson,"username");
-        System.out.println(userJson);
+//        System.out.println(userJson);
         JSONObject jsonObject = new JSONObject(userJson);
         User user=userRepository.findByUsername(jsonObject.getString("email"));
 
-        System.out.println(jsonObject.getString("email"));
+//        System.out.println(jsonObject.getString("email"));
         return new MyUserDetails(user);
 //        if (optionalUser.isPresent()) return new MyUserDetails(optionalUser.get());
 //        else return null;

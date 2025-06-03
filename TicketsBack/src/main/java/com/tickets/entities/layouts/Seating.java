@@ -1,5 +1,7 @@
 package com.tickets.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tickets.security.entities.User;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,12 +20,17 @@ public class Seating {
     private boolean free;
 
     @Column(length=10000)
-    private String matrix;     // yellow orange red green brown blue    A B C D E F   S-space     G-taken
+    private String matrix;     // yellow orange red green brown blue    A B C D E F   S-space     T-taken    black-taken  gray-reserved
+
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user;
 
     public Seating() {
     }
 
-    public Seating(String id, String name, int rowCount, int columnCount, boolean zigzag, boolean free, String matrix) {
+    public Seating(String id, String name, int rowCount, int columnCount, boolean zigzag, boolean free, String matrix, User user) {
         this.name=name;
         this.id = id;
         this.rowCount = rowCount;
@@ -31,6 +38,7 @@ public class Seating {
         this.zigzag = zigzag;
         this.free=free;
         this.matrix = matrix;
+        this.user=user;
     }
 
     public String getId() {
@@ -59,6 +67,9 @@ public class Seating {
         return matrix;
     }
 
+    public User getUser() {
+        return user;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -84,5 +95,20 @@ public class Seating {
 
     public void setMatrix(String matrix) {
         this.matrix = matrix;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Seating{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", rowCount=" + rowCount +
+                ", columnCount=" + columnCount +
+                '}';
     }
 }

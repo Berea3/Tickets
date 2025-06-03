@@ -1,4 +1,4 @@
-package com.tickets.entities;
+package com.tickets.entities.layouts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tickets.security.entities.User;

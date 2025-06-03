@@ -1,11 +1,14 @@
 package com.tickets.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tickets.entities.layouts.Seating;
+import com.tickets.entities.tickets.TheaterTicket;
 import com.tickets.security.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name="theaters")
@@ -31,16 +34,23 @@ public class Theater {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "theater",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<TheaterTicket> theaterTickets;
+
     public Theater() {}
 
-    public Theater(String id, String name, String description, LocalDate date, LocalTime time, Attachment poster, User user) {
+    public Theater(String id, String name, String description, LocalDate date, LocalTime time, Attachment poster, Seating seating, User user, List<TheaterTicket> theaterTickets) {
         this.id = id;
         this.name = name;
-        this.description=description;
+        this.description = description;
         this.date = date;
-        this.time=time;
+        this.time = time;
         this.poster = poster;
-        this.user=user;
+        this.seating = seating;
+        this.user = user;
+        this.theaterTickets = theaterTickets;
     }
 
     public String getId() {return this.id;}
@@ -52,6 +62,10 @@ public class Theater {
     public Seating getSeating() {return seating;}
     public User getUser() {return user;}
 
+    public List<TheaterTicket> getTheaterTickets() {
+        return theaterTickets;
+    }
+
     public void setId(String id) {this.id=id;}
     public void setName(String name) {this.name=name;}
     public void setDescription(String description) {this.description = description;}
@@ -60,6 +74,10 @@ public class Theater {
     public void setPoster(Attachment poster) {this.poster=poster;}
     public void setSeating(Seating seating) {this.seating = seating;}
     public void setUser(User user) {this.user = user;}
+
+    public void setTheaterTickets(List<TheaterTicket> theaterTickets) {
+        this.theaterTickets = theaterTickets;
+    }
 
     @Override
     public String toString() {

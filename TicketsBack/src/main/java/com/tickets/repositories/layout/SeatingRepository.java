@@ -1,4 +1,4 @@
-package com.tickets.repositories;
+package com.tickets.repositories.layout;
 
 import com.tickets.entities.layouts.Seating;
 import org.springframework.data.jpa.repository.JpaRepository;

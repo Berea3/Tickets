@@ -3,7 +3,7 @@ package com.tickets.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tickets.entities.Attachment;
-import com.tickets.entities.Seating;
+import com.tickets.entities.layouts.Seating;
 import com.tickets.entities.Theater;
 import com.tickets.entities.generator.Generator;
 import com.tickets.entities.tickets.TheaterTicket;

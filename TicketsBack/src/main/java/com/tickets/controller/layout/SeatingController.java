@@ -1,8 +1,8 @@
 package com.tickets.controller.layout;
 
-import com.tickets.entities.Seating;
+import com.tickets.entities.layouts.Seating;
 import com.tickets.entities.generator.Generator;
-import com.tickets.repositories.SeatingRepository;
+import com.tickets.repositories.layout.SeatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

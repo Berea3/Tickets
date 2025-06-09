@@ -11,10 +11,7 @@ public class Generator {
         s.append("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
         LocalTime localTime=LocalTime.now();
-        long seed=localTime.getSecond()+localTime.getMinute()*60+ localTime.getHour()*60*60;
-
         Random random=new Random();
-        random.setSeed(seed);
 
         StringBuilder id=new StringBuilder();
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Theater} from '../../../entities/Theater';
-import {Seating} from '../../../entities/Seating';
+import {Seating} from '../../../entities/layout/Seating';
 import {HttpClient} from '@angular/common/http';
 import {LinkService} from '../../../services/link.service';
 import {Movie} from '../../../entities/Movie';

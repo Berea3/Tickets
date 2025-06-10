@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import {LinkService} from "../../../services/link.service";
 import {HeaderComponent} from '../../header/header.component';
 import {BearInputTextComponent} from 'bear-library';
-import {Seating} from '../../../entities/Seating';
+import {Seating} from '../../../entities/layout/Seating';
 
 @Component({
   selector: 'app-add-theatre',

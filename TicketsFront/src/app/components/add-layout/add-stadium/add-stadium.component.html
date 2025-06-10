@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="menu">
+    <bear-btn type="info" (click)="addRow()">add row</bear-btn>
+    <bear-btn type="info" (click)="addColumn()">add column</bear-btn>
+    <bear-input-text (textChanged)="setName($event)">Name</bear-input-text>
+    <bear-btn type="accent" (click)="addSection()">Add section</bear-btn>
+    <bear-btn type="accent" (click)="addStadium()">Add stadium</bear-btn>
+</div>
+
+<div class="seating">
+    <div class="seats">
+        @if (this.stadiumSection.rowCount!=0 && this.stadiumSection.columnCount!=0) {
+            @for(row of map; let i=$index; track i)
+            {
+                <div class="row">
+                    @for(col of row; let j=$index; track j)
+                    {
+                        <span class="seat"></span>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

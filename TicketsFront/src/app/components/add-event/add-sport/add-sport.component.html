@@ -1,1 +1,19 @@
-<p>add-sport works!</p>
+<app-header></app-header>
+
+<form class="form">
+    <bear-input-text (textChanged)="setName($event)">Name</bear-input-text>
+
+    <bear-input-text (textChanged)="setDescription($event)">Description</bear-input-text>
+
+    <input type="file" (change)="onFileAdded($event)" accept=".doc,.docx,.pdf" multiple class="fileInput">
+    <input type="date" [(ngModel)]="sport.date" name="date">
+    <input type="time" [(ngModel)]="sport.time" name="time">
+
+    <select [(ngModel)]="stadiumId" name="seating">
+        @for(stadium of stadiums; track stadium)
+        {
+            <option value="{{stadium.id}}">{{stadium.name}}</option>
+        }
+    </select>
+    <button (click)="onSubmit()">Add event</button>
+</form>

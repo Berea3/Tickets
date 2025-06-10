@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Movie} from '../../../entities/Movie';
 import {TheaterTicket} from '../../../entities/tickets/TheaterTicket';
 import {Theater} from '../../../entities/Theater';
-import {Seating} from '../../../entities/Seating';
+import {Seating} from '../../../entities/layout/Seating';
 import {MovieTicket} from '../../../entities/tickets/MovieTicket';
 import {BearBtnComponent} from 'bear-library';
 import {HeaderComponent} from '../../header/header.component';

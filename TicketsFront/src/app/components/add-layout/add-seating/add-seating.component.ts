@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import {Stage} from '../../../entities/Stage';
 import {HttpClient} from '@angular/common/http';
 import {LinkService} from '../../../services/link.service';
 import {BearBtnComponent, BearInputCheckboxComponent, BearInputTextComponent} from 'bear-library';
 import {HeaderComponent} from '../../header/header.component';
-import {Seating} from '../../../entities/Seating';
+import {Seating} from '../../../entities/layout/Seating';
 import {NgClass} from '@angular/common';
 import {Router} from '@angular/router';
 
@@ -21,7 +20,6 @@ import {Router} from '@angular/router';
   styleUrl: './add-seating.component.css'
 })
 export class AddSeatingComponent {
-    seats: string;
     rows: number=1;
     columns: number=0;
     zig_zag: boolean=false;

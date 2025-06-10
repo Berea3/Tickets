@@ -10,16 +10,12 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
@@ -27,17 +23,15 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserRepository userRepository;
 
-    private UserService userService=new UserService();
+    private final UserService userService=new UserService();
 
     @Override
     public Authentication authenticate(Authentication authentication)
     {
         String email=authentication.getName();
         String password=authentication.getCredentials().toString();
-//        password=UserService.hashPassword(password);
         User user=userService.validateUser(email,password,userRepository);
-        System.out.println(user);
-        if (user!=null)       //return new UsernamePasswordAuthenticationToken(username,password,new ArrayList<>());
+        if (user!=null)
         {
             String[] roles = user.getRoles().split("_");
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();

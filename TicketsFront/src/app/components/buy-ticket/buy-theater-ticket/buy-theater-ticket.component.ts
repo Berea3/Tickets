@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TheaterTicket} from '../../../entities/tickets/TheaterTicket';
 import {Theater} from '../../../entities/Theater';
 import {HeaderComponent} from '../../header/header.component';
-import {Seating} from '../../../entities/Seating';
+import {Seating} from '../../../entities/layout/Seating';
 import {NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {BearBtnComponent} from 'bear-library';

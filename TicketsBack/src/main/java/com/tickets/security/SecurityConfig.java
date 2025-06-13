@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.messaging.Message;
 import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.authorization.AuthorizationManager;
@@ -57,6 +58,7 @@ public class SecurityConfig {
                 .requestMatchers("/theaters/getById/{id}").permitAll()
 
                 .requestMatchers("/concerts/getAll").permitAll()
+                .requestMatchers(HttpMethod.GET,"/movies/getAll").permitAll()
 
                 .requestMatchers("/files/findById/{id}").permitAll()    //  poster request
 

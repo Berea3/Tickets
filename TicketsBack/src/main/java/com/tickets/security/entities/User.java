@@ -2,6 +2,10 @@ package com.tickets.security.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tickets.entities.*;
+import com.tickets.entities.layouts.Seating;
+import com.tickets.entities.layouts.Stadium;
+import com.tickets.entities.tickets.ConcertTicket;
+import com.tickets.entities.tickets.MovieTicket;
 import com.tickets.entities.tickets.TheaterTicket;
 import jakarta.persistence.*;
 
@@ -51,9 +55,24 @@ public class User {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<TheaterTicket> theaterTickets;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<ConcertTicket> concertTickets;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<MovieTicket> movieTickets;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Stadium> stadiums;
+
     public User(){}
 
-    public User(String id, String email, String password, String roles, List<Theater> theaters, List<Concert> concerts, List<Movie> movies, List<Sport> sports, List<Seating> seatings, List<TheaterTicket> theaterTickets) {
+    public User(String id, String email, String password, String roles, List<Theater> theaters, List<Concert> concerts, List<Movie> movies, List<Sport> sports, List<Seating> seatings, List<TheaterTicket> theaterTickets, List<ConcertTicket> concertTickets, List<MovieTicket> movieTickets, List<Stadium> stadiums) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -64,41 +83,62 @@ public class User {
         this.sports = sports;
         this.seatings = seatings;
         this.theaterTickets = theaterTickets;
+        this.concertTickets = concertTickets;
+        this.movieTickets = movieTickets;
+        this.stadiums = stadiums;
     }
 
-    public void addTheatre(Theater theater)
-    {
+    public void addTheatre(Theater theater){
         if (this.theaters==null) {this.theaters=new ArrayList<>();}
         this.theaters.add(theater);
         theater.setUser(this);
     }
 
-    public void addConcert(Concert concert)
-    {
+    public void addConcert(Concert concert){
         if (this.concerts==null) {this.concerts=new ArrayList<>();}
         this.concerts.add(concert);
         concert.setUser(this);
     }
 
-    public void addMovie(Movie movie)
-    {
+    public void addMovie(Movie movie){
         if (this.movies==null) {this.movies=new ArrayList<>();}
         this.movies.add(movie);
         movie.setUser(this);
     }
 
-    public void addSport(Sport sport)
-    {
+    public void addSport(Sport sport){
         if (this.sports==null) {this.sports=new ArrayList<>();}
         this.sports.add(sport);
 //        sport.setUser(this);
     }
 
-    public void addSeating(Seating seating)
-    {
+    public void addSeating(Seating seating){
         if (this.seatings==null) {this.seatings=new ArrayList<>();}
         this.seatings.add(seating);
         seating.setUser(this);
+    }
+
+    public void addTheaterTicket(TheaterTicket theaterTicket){
+        if (this.theaterTickets==null) {this.theaterTickets=new ArrayList<>();}
+        this.theaterTickets.add(theaterTicket);
+        theaterTicket.setUser(this);
+    }
+
+    public void addConcertTicket(ConcertTicket concertTicket){
+        if (this.concertTickets==null) {this.concertTickets=new ArrayList<>();}
+        this.concertTickets.add(concertTicket);
+        concertTicket.setUser(this);
+    }
+
+    public void addMovieTicket(MovieTicket movieTicket){
+        if (this.movieTickets==null) {this.movieTickets=new ArrayList<>();}
+        this.movieTickets.add(movieTicket);
+        movieTicket.setUser(this);
+    }
+
+    public void addStadium(Stadium stadium){
+        if (this.stadiums==null) {this.stadiums=new ArrayList<>();}
+        this.stadiums.add(stadium);
     }
 
     public String getId() {return this.id;}
@@ -119,6 +159,26 @@ public class User {
         return sports;
     }
 
+    public List<Seating> getSeatings() {
+        return seatings;
+    }
+
+    public List<TheaterTicket> getTheaterTickets() {
+        return theaterTickets;
+    }
+
+    public List<ConcertTicket> getConcertTickets() {
+        return concertTickets;
+    }
+
+    public List<MovieTicket> getMovieTickets() {
+        return movieTickets;
+    }
+
+    public List<Stadium> getStadiums() {
+        return stadiums;
+    }
+
     public void setId(String id) {this.id=id;}
     public void setPassword(String password) {this.password=password;}
     public void setEmail(String email) {this.email=email;}
@@ -137,6 +197,26 @@ public class User {
         this.sports = sports;
     }
 
+    public void setSeatings(List<Seating> seatings) {
+        this.seatings = seatings;
+    }
+
+    public void setTheaterTickets(List<TheaterTicket> theaterTickets) {
+        this.theaterTickets = theaterTickets;
+    }
+
+    public void setConcertTickets(List<ConcertTicket> concertTickets) {
+        this.concertTickets = concertTickets;
+    }
+
+    public void setMovieTickets(List<MovieTicket> movieTickets) {
+        this.movieTickets = movieTickets;
+    }
+
+    public void setStadiums(List<Stadium> stadiums) {
+        this.stadiums = stadiums;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -144,7 +224,12 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles='" + roles + '\'' +
-//                ", theatres=" + theatres +
+//                ", theaters=" + theaters +
+//                ", concerts=" + concerts +
+//                ", movies=" + movies +
+//                ", sports=" + sports +
+//                ", seatings=" + seatings +
+//                ", theaterTickets=" + theaterTickets +
                 '}';
     }
 }

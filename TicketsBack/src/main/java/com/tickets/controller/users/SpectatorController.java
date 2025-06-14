@@ -31,6 +31,7 @@ public class SpectatorController {
         tickets.addAll(user.getTheaterTickets().stream().map(theaterTicket -> {return new TicketDto(theaterTicket.getId(),"theater",theaterTicket.getTheater().getName());}).toList());
         tickets.addAll(user.getConcertTickets().stream().map(concertTicket -> {return new TicketDto(concertTicket.getId(), "concert", concertTicket.getConcert().getName());}).toList());
         tickets.addAll(user.getMovieTickets().stream().map(movieTicket -> { return new TicketDto(movieTicket.getId(), "movie", movieTicket.getMovie().getName());}).toList());
+        tickets.addAll(user.getSportTickets().stream().map(sportTicket -> {return new TicketDto(sportTicket.getId(), "sport", sportTicket.getSport().getName());}).toList());
         return tickets;
     }
 }

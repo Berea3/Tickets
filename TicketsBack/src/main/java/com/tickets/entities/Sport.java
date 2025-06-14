@@ -2,11 +2,14 @@ package com.tickets.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tickets.entities.layouts.Stadium;
+import com.tickets.entities.tickets.SportTicket;
+import com.tickets.entities.tickets.TheaterTicket;
 import com.tickets.security.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name="sports")
@@ -34,9 +37,14 @@ public class Sport {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "sport",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<SportTicket> sportTickets;
+
     public Sport() {}
 
-    public Sport(String id, String name, String description, String type, LocalDate date, LocalTime time, Attachment poster, Stadium stadium, User user) {
+    public Sport(String id, String name, String description, String type, LocalDate date, LocalTime time, Attachment poster, Stadium stadium, User user, List<SportTicket> sportTickets) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,6 +54,7 @@ public class Sport {
         this.poster = poster;
         this.stadium = stadium;
         this.user = user;
+        this.sportTickets = sportTickets;
     }
 
     public String getId() {
@@ -84,6 +93,9 @@ public class Sport {
         return user;
     }
 
+    public List<SportTicket> getSportTickets() {
+        return sportTickets;
+    }
 
 
 
@@ -121,5 +133,9 @@ public class Sport {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setSportTickets(List<SportTicket> sportTickets) {
+        this.sportTickets = sportTickets;
     }
 }

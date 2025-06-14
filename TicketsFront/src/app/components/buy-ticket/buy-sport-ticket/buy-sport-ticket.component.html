@@ -1,1 +1,44 @@
-<p>buy-sport-ticket works!</p>
+<app-header></app-header>
+
+<h3>Buy Theater ticket</h3>
+
+<h3>Title: {{this.sport.name}}</h3>
+<h3>Description: {{this.sport.description}}</h3>
+<h3>Date: {{this.sport.date}}</h3>
+<h3>Time: {{this.sport.time}}</h3>
+<select [(ngModel)]="stadiumSectionIndex" (ngModelChange)="stadiumSectionIndexChanged($event)">
+    @for(stadiumSection of sport.stadium.stadiumSections; let i=$index; track i)
+    {
+        <option value="{{i}}">{{i}}</option>
+    }
+</select>
+<bear-btn (click)="buyTicket()">Buy ticket</bear-btn>
+
+<div class="seating">
+    <div class="seats">
+        @if (this.stadium!=null && this.stadium!=undefined) {
+            @for(row of map; let i=$index; track i)
+            {
+                <div class="row">
+                    @for(col of row; let j=$index; track j)
+                    {
+                        @switch (map[i][j])
+                        {
+                            @case ('A') {
+                                <span class="seat" (click)="selectSeat(i,j)"></span>
+                            }
+
+                            @case ('T') {
+                                <span class="seat taken"></span>
+                            }
+
+                            @case ('R'){
+                                <span class="seat reserved" (click)="selectSeat(i,j)"></span>
+                            }
+                        }
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

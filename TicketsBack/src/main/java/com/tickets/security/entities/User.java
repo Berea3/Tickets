@@ -6,6 +6,7 @@ import com.tickets.entities.layouts.Seating;
 import com.tickets.entities.layouts.Stadium;
 import com.tickets.entities.tickets.ConcertTicket;
 import com.tickets.entities.tickets.MovieTicket;
+import com.tickets.entities.tickets.SportTicket;
 import com.tickets.entities.tickets.TheaterTicket;
 import jakarta.persistence.*;
 
@@ -68,11 +69,16 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<SportTicket> sportTickets;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Stadium> stadiums;
 
     public User(){}
 
-    public User(String id, String email, String password, String roles, List<Theater> theaters, List<Concert> concerts, List<Movie> movies, List<Sport> sports, List<Seating> seatings, List<TheaterTicket> theaterTickets, List<ConcertTicket> concertTickets, List<MovieTicket> movieTickets, List<Stadium> stadiums) {
+    public User(String id, String email, String password, String roles, List<Theater> theaters, List<Concert> concerts, List<Movie> movies, List<Sport> sports, List<Seating> seatings, List<TheaterTicket> theaterTickets, List<ConcertTicket> concertTickets, List<MovieTicket> movieTickets, List<SportTicket> sportTickets, List<Stadium> stadiums) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -85,6 +91,7 @@ public class User {
         this.theaterTickets = theaterTickets;
         this.concertTickets = concertTickets;
         this.movieTickets = movieTickets;
+        this.sportTickets = sportTickets;
         this.stadiums = stadiums;
     }
 
@@ -109,7 +116,7 @@ public class User {
     public void addSport(Sport sport){
         if (this.sports==null) {this.sports=new ArrayList<>();}
         this.sports.add(sport);
-//        sport.setUser(this);
+        sport.setUser(this);
     }
 
     public void addSeating(Seating seating){
@@ -134,6 +141,12 @@ public class User {
         if (this.movieTickets==null) {this.movieTickets=new ArrayList<>();}
         this.movieTickets.add(movieTicket);
         movieTicket.setUser(this);
+    }
+
+    public void addSportTicket(SportTicket sportTicket){
+        if (this.sportTickets==null) {this.sportTickets=new ArrayList<>();}
+        this.sportTickets.add(sportTicket);
+        sportTicket.setUser(this);
     }
 
     public void addStadium(Stadium stadium){
@@ -175,6 +188,10 @@ public class User {
         return movieTickets;
     }
 
+    public List<SportTicket> getSportTickets() {
+        return sportTickets;
+    }
+
     public List<Stadium> getStadiums() {
         return stadiums;
     }
@@ -211,6 +228,10 @@ public class User {
 
     public void setMovieTickets(List<MovieTicket> movieTickets) {
         this.movieTickets = movieTickets;
+    }
+
+    public void setSportTickets(List<SportTicket> sportTickets) {
+        this.sportTickets = sportTickets;
     }
 
     public void setStadiums(List<Stadium> stadiums) {

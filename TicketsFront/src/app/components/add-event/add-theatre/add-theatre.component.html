@@ -5,7 +5,7 @@
 
     <bear-input-text (textChanged)="setDescription($event)">Description</bear-input-text>
 
-    <input type="file" (change)="onFileAdded($event)" accept=".doc,.docx,.pdf" multiple class="fileInput">
+    <input type="file" (change)="onFileAdded($event)" accept="image/*" multiple class="fileInput">
     <input type="date" [(ngModel)]="theatre.date" name="date">
     <input type="time" [(ngModel)]="theatre.time" name="time">
 

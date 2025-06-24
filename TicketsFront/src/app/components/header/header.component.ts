@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {SecurityService} from "../../services/security.service";
 import {NgIf} from "@angular/common";
 import {BearBtnComponent} from 'bear-library';
 import {TranslatePipe} from '../../services/translate.pipe';
+import {HttpClient} from '@angular/common/http';
+import {LinkService} from '../../services/link.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +21,7 @@ import {TranslatePipe} from '../../services/translate.pipe';
 })
 export class HeaderComponent {
 
-    constructor(private securityService: SecurityService) {}
+    constructor(private securityService: SecurityService, private http: HttpClient, private router: Router, private link: LinkService) {}
 
     ngOnInit()
     {
@@ -28,17 +30,30 @@ export class HeaderComponent {
 
     isOrganizer()
     {
-        // for (let i=0;i<this.securityService.getUser().roles.length;i++) if (this.securityService.getUser().roles[i]=="organizer") return true;
         if (this.securityService.getRole()=="organizer") return true;
         console.log("not organizer");
         console.log(this.securityService.getRole());
         return false;
-        // if (sessionStorage.getItem("loggedin")=="yes") return true;
-        // else return false;
+    }
+
+    isSpectator()
+    {
+        if (this.securityService.getRole()=="spectator") return true;
+        return false;
     }
 
     isLoggedIn()
     {
         return this.securityService.isLoggedIn();
+    }
+
+    logOut()
+    {
+        this.http.post(this.link.url+"/logout",null).subscribe(   // should be moved to securityService
+            (response: any)=>{
+                this.router.navigateByUrl("");
+                this.securityService.checkLoggedIn();
+            }
+        );
     }
 }

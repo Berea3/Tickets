@@ -1,5 +1,5 @@
 import {Attachment} from "./Attachment";
-import {Seating} from './Seating';
+import {Seating} from './layout/Seating';
 
 export class Theater {
     id: string;

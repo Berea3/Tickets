@@ -10,7 +10,6 @@ public class Generator {
         StringBuilder s=new StringBuilder();
         s.append("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
-        LocalTime localTime=LocalTime.now();
         Random random=new Random();
 
         StringBuilder id=new StringBuilder();

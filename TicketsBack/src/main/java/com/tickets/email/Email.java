@@ -23,7 +23,6 @@ public class Email {
     public void send(String toEmail, String subject, String body){
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("your_email@example.com"); // Replace with your sending email
             message.setTo(toEmail);
             message.setSubject(subject);
             message.setText(body);

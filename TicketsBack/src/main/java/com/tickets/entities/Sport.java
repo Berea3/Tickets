@@ -19,6 +19,7 @@ public class Sport {
     private String id;
 
     private String name;
+    @Column(length=10000)
     private String description;
     private String type;
     private LocalDate date;

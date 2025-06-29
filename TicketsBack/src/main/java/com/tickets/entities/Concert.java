@@ -17,6 +17,7 @@ public class Concert {
     private String id;
 
     private String name;
+    @Column(length=10000)
     private String description;
     private LocalDate date;
     private LocalTime time;

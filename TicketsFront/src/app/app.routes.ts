@@ -5,11 +5,10 @@ import {SignUpComponent} from './components/security/sign-up/sign-up.component';
 import {AddEventComponent} from './components/add-event/add-event.component';
 import {AddTheatreComponent} from './components/add-event/add-theatre/add-theatre.component';
 import {TheatreViewComponent} from './components/home/view-event-pages/theatre-view/theatre-view.component';
-import {StageComponent} from './components/stage/stage.component';
 import {SocketComponent} from './components/socket/socket.component';
 import {authGuard} from './services/auth.guard';
-import {ManageComponent} from './components/settings/manage/manage.component';
-import {ProfileComponent} from './components/settings/profile/profile.component';
+import {ManageComponent} from './components/management/organizer/manage/manage.component';
+import {ProfileComponent} from './components/management/spectator/profile/profile.component';
 import {AddConcertComponent} from './components/add-event/add-concert/add-concert.component';
 import {AddMovieComponent} from './components/add-event/add-movie/add-movie.component';
 import {AddSportComponent} from './components/add-event/add-sport/add-sport.component';
@@ -19,6 +18,12 @@ import {TheatersPageComponent} from './components/home/events-pages/theaters-pag
 import {ConcertsPageComponent} from './components/home/events-pages/concerts-page/concerts-page.component';
 import {MoviesPageComponent} from './components/home/events-pages/movies-page/movies-page.component';
 import {SportsPageComponent} from './components/home/events-pages/sports-page/sports-page.component';
+import {BuyTheaterTicketComponent} from './components/buy-ticket/buy-theater-ticket/buy-theater-ticket.component';
+import {CheckTicketComponent} from './components/management/organizer/check-ticket/check-ticket.component';
+import {BuyConcertTicketComponent} from './components/buy-ticket/buy-concert-ticket/buy-concert-ticket.component';
+import {BuyMovieTicketComponent} from './components/buy-ticket/buy-movie-ticket/buy-movie-ticket.component';
+import {AddStadiumComponent} from './components/add-layout/add-stadium/add-stadium.component';
+import {BuySportTicketComponent} from './components/buy-ticket/buy-sport-ticket/buy-sport-ticket.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -31,18 +36,24 @@ export const routes: Routes = [
     { path: 'movies', component: MoviesPageComponent },
     { path: 'sports', component: SportsPageComponent },
 
-    { path: 'theaters/:id', component: TheatersPageComponent },   // view event pages
-    { path: 'concerts/:id', component: ConcertsPageComponent },
-    { path: 'movies/:id', component: MoviesPageComponent },
-    { path: 'sports/:id', component: SportsPageComponent },
+    { path: 'theater/:id', component: TheatreViewComponent },   // view event pages
+    { path: 'concert/:id', component: ConcertsPageComponent },
+    { path: 'movie/:id', component: MoviesPageComponent },
+    { path: 'sport/:id', component: SportsPageComponent },
 
-    { path: 'add-event/add-theatre', component: AddTheatreComponent },
-    { path: 'events/theatres/:id', component: TheatreViewComponent },
-    { path: 'socket', component: SocketComponent },
+    // pages for spectator
+    { path: 'profile', component: ProfileComponent},
+    { path: 'buy/theater/:id', component: BuyTheaterTicketComponent, canActivate: [authGuard] },
+    { path: 'buy/concert/:id', component: BuyConcertTicketComponent, canActivate: [authGuard] },
+    { path: 'buy/movie/:id', component: BuyMovieTicketComponent, canActivate: [authGuard]},
+    { path: 'buy/sport/:id', component: BuySportTicketComponent, canActivate: [authGuard]},
 
     { path: 'manage', component: ManageComponent, canActivate: [authGuard] },
-    { path: 'add-layout', component: AddLayoutComponent},    //canActivate: [authGuard]
+    { path: 'organizer/check-ticket', component: CheckTicketComponent},
+    { path: 'add-layout', component: AddLayoutComponent},
     { path: 'add/seating', component: AddSeatingComponent},
+    { path: 'add/stadium', component: AddStadiumComponent},
+    { path: 'check-ticket', component: CheckTicketComponent},
 
     { path: 'add-event', component: AddEventComponent },
     { path: 'add/theatre', component: AddTheatreComponent, canActivate: [authGuard] },

@@ -1,5 +1,6 @@
 package com.tickets.email;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,11 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmailController {
 
-    private final Email email;
+//    private final Email email=new Email();
 
-    public EmailController(Email email) {
-        this.email = email;
-    }
+    @Autowired
+    Email email;
 
     @GetMapping(path="/sendEmail")
     public String sendRequest()

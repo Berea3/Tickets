@@ -6,6 +6,7 @@ import {LinkService} from "../../../services/link.service";
 import {HeaderComponent} from '../../header/header.component';
 import {BearInputTextComponent} from 'bear-library';
 import {Seating} from '../../../entities/layout/Seating';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-theatre',
@@ -26,7 +27,7 @@ export class AddTheatreComponent {
     newFile: File;
     seatingId: string;
 
-    constructor(private http: HttpClient, private link: LinkService) {}
+    constructor(private http: HttpClient, private link: LinkService, private router: Router) {}
 
     ngOnInit()
     {
@@ -65,7 +66,11 @@ export class AddTheatreComponent {
                 {
                     const formData=new FormData();
                     formData.append('file',this.newFile);
-                    this.http.post(this.link.url+'/theaters/setFile/'+response.id,formData).subscribe();
+                    this.http.post(this.link.url+'/theaters/setFile/'+response.id,formData).subscribe(
+                        (response: any)=>{
+                            this.router.navigateByUrl("/manage");
+                        }
+                    );
                 }
             }
         );

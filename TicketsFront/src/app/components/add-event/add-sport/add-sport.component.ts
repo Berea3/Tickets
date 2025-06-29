@@ -42,7 +42,7 @@ export class AddSportComponent {
         const newStadium=this.stadiums.find((stadium)=>stadium.id===this.stadiumId);
         if (newStadium==undefined) this.sport.stadium=new Stadium();
         else this.sport.stadium=newStadium;
-        this.http.post(this.link.url+"/theaters/create",this.sport).subscribe(
+        this.http.post(this.link.url+"/sports/create",this.sport).subscribe(
             (response: any)=>{
                 console.log(response);
                 if (response.id==null) console.log("null id");
@@ -50,7 +50,11 @@ export class AddSportComponent {
                 {
                     const formData=new FormData();
                     formData.append('file',this.newFile);
-                    this.http.post(this.link.url+'/theaters/setFile/'+response.id,formData).subscribe();
+                    this.http.post(this.link.url+'/sports/setFile/'+response.id,formData).subscribe(
+                        (response: any)=>{
+                            this.router.navigateByUrl("/manage");
+                        }
+                    );
                 }
             }
         );

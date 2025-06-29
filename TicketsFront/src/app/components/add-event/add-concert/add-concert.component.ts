@@ -6,6 +6,7 @@ import {LinkService} from '../../../services/link.service';
 import {BearInputTextComponent} from 'bear-library';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HeaderComponent} from '../../header/header.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-concert',
@@ -24,7 +25,7 @@ export class AddConcertComponent {
     newFile: File;
     seatingId: string;
 
-    constructor(private http: HttpClient, private link: LinkService) {}
+    constructor(private http: HttpClient, private link: LinkService, private router: Router) {}
 
     ngOnInit()
     {
@@ -44,7 +45,11 @@ export class AddConcertComponent {
                 {
                     const formData=new FormData();
                     formData.append('file',this.newFile);
-                    this.http.post(this.link.url+"/concerts/setFile/"+response.id,formData).subscribe();
+                    this.http.post(this.link.url+"/concerts/setFile/"+response.id,formData).subscribe(
+                        (response: any)=>{
+                            this.router.navigateByUrl("/manage");
+                        }
+                    );
                 }
             }
         )

@@ -7,6 +7,7 @@ import {Movie} from '../../../entities/Movie';
 import {BearInputTextComponent} from 'bear-library';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HeaderComponent} from '../../header/header.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-movie',
@@ -26,7 +27,7 @@ export class AddMovieComponent {
     newFile: File;
     seatingId: string;
 
-    constructor(private http: HttpClient, private link: LinkService) {}
+    constructor(private http: HttpClient, private link: LinkService, private router: Router) {}
 
     ngOnInit()
     {
@@ -55,7 +56,11 @@ export class AddMovieComponent {
                 {
                     const formData=new FormData();
                     formData.append('file',this.newFile);
-                    this.http.post(this.link.url+'/movies/setFile/'+response.id,formData).subscribe();
+                    this.http.post(this.link.url+'/movies/setFile/'+response.id,formData).subscribe(
+                        (response: any)=>{
+                            this.router.navigateByUrl("/manage");
+                        }
+                    );
                 }
             }
         );

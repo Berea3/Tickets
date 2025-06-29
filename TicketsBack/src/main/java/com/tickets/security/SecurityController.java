@@ -2,6 +2,7 @@ package com.tickets.security;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tickets.email.Email;
 import com.tickets.entities.generator.Generator;
 import com.tickets.security.entities.User;
 import com.tickets.security.entities.UserRepository;
@@ -19,8 +20,12 @@ import java.util.Map;
 
 @RestController
 public class SecurityController {
+
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private Email email;
 
     @GetMapping("/security")
     public String security() throws JsonProcessingException
@@ -69,6 +74,7 @@ public class SecurityController {
             String salt=BCrypt.gensalt();
             user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
             userRepository.save(user);
+            email.send(user.getEmail(),"Tickets","Your account was created");
             return "user added";
         }
         else

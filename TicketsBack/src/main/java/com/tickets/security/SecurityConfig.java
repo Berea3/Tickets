@@ -53,12 +53,17 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(config -> config
 
+//                .requestMatchers(HttpMethod.GET,"/events/getAll").permitAll()
+                .requestMatchers("/events/getAll").permitAll()
+
                 .requestMatchers("/theaters/create").hasAuthority("organizer")      // theatres
                 .requestMatchers("/theaters/getAll").permitAll()
                 .requestMatchers("/theaters/getById/{id}").permitAll()
 
                 .requestMatchers("/concerts/getAll").permitAll()
                 .requestMatchers(HttpMethod.GET,"/movies/getAll").permitAll()
+
+                .requestMatchers(HttpMethod.GET,"/sports/getAll").permitAll()
 
                 .requestMatchers("/files/findById/{id}").permitAll()    //  poster request
 
@@ -77,27 +82,13 @@ public class SecurityConfig {
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
                     throws IOException, ServletException { // Authentication success handler decides what to return if the login is successfull
-//                System.out.println(authentication.toString());
                 String json=authentication.getName();
                 response.getWriter().write(json);
-//                response.setStatus(200);
-//                String json=mapper.writeValueAsString(responseBody);
-//                response.setStatus(HttpServletResponse.SC_FOUND);
                 response.setStatus(202);
             }
         }).failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-//                        response.setStatus(HttpServletResponse.SC_ACCEPTED);
-
-//                        response.setContentType("application/json");
-//                        Map<String, Boolean> responseBody=new HashMap<>();
-//                        responseBody.put("loggedin",false);
-//
-//                        ObjectMapper mapper=new ObjectMapper();
-//                        String json=mapper.writeValueAsString(responseBody);
-//                        response.getWriter().write(json);
-//                        response.getWriter().write("proba");
                         User user=new User();
                         ObjectMapper mapper=new ObjectMapper();
                         String json=mapper.writeValueAsString(user);
@@ -121,116 +112,20 @@ public class SecurityConfig {
             }
         }));
 
-//        httpSecurity.rememberMe(withDefaults());
-
         httpSecurity.logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(false).logoutUrl("/logout").permitAll());
         httpSecurity.httpBasic(withDefaults());
 
         httpSecurity.cors(cors -> cors.configurationSource(corsConfigurationSource()));
         httpSecurity.csrf(csrf -> csrf.disable());
 
-        httpSecurity.rememberMe(rememberMe -> rememberMe.rememberMeParameter("rememberMe").userDetailsService(myUserDetailsService).alwaysRemember(true));
-
-        httpSecurity.rememberMe(rememberMeConfigurer -> rememberMeConfigurer.userDetailsService(myUserDetailsService));
-
         return httpSecurity.build();
     }
-
-//    @Autowired
-//    private RememberMeProvider rememberMeProvider;
 
     @Autowired
     private MyAuthenticationProvider authenticationProvider;
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
-
-//    @Bean
-//    public TokenBasedRememberMeServices rememberMeServices() {
-//        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices("springRocks", myUserDetailsService);
-//        return rememberMeServices;
-//    }
-//
-//    // Optionally, you can still define the RememberMeAuthenticationProvider if you need to customize it
-//    @Bean
-//    public RememberMeAuthenticationProvider rememberMeAuthenticationProvider() {
-//        RememberMeAuthenticationProvider rememberMeAuthenticationProvider = new RememberMeAuthenticationProvider("springRocks");
-//        return rememberMeAuthenticationProvider;
-//    }
-
-//    @Bean
-//    RememberMeServices rememberMeServices(UserDetailsService userDetailsService) {
-//        TokenBasedRememberMeServices.RememberMeTokenAlgorithm encodingAlgorithm = TokenBasedRememberMeServices.RememberMeTokenAlgorithm.SHA256;
-//        TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices(myKey, userDetailsService, encodingAlgorithm);
-//        rememberMe.setMatchingAlgorithm(TokenBasedRememberMeServices.RememberMeTokenAlgorithm.MD5);
-//        return rememberMe;
-//    }
-//
-//    @Bean
-//    RememberMeAuthenticationFilter rememberMeFilter() {
-//        RememberMeAuthenticationFilter rememberMeFilter = new RememberMeAuthenticationFilter();
-//        rememberMeFilter.setRememberMeServices(rememberMeServices());
-//        rememberMeFilter.setAuthenticationManager(theAuthenticationManager);
-//        return rememberMeFilter;
-//    }
-//
-//    @Bean
-//    TokenBasedRememberMeServices rememberMeServices() {
-//        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices();
-//        rememberMeServices.setUserDetailsService(myUserDetailsService);
-//        rememberMeServices.setKey("springRocks");
-//        return rememberMeServices;
-//    }
-//
-//    @Bean
-//    RememberMeAuthenticationProvider rememberMeAuthenticationProvider() {
-//        RememberMeAuthenticationProvider rememberMeAuthenticationProvider = new RememberMeAuthenticationProvider();
-//        rememberMeAuthenticationProvider.setKey("springRocks");
-//        return rememberMeAuthenticationProvider;
-//    }
-
-//    @Bean
-//    RememberMeServices rememberMeServices(UserDetailsService userDetailsService) {
-//        TokenBasedRememberMeServices.RememberMeTokenAlgorithm encodingAlgorithm = TokenBasedRememberMeServices.RememberMeTokenAlgorithm.SHA256;
-//        TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices(myKey, userDetailsService, encodingAlgorithm);
-//        rememberMe.setMatchingAlgorithm(TokenBasedRememberMeServices.RememberMeTokenAlgorithm.MD5);
-//        return rememberMe;
-//    }
-
-//    @Bean
-//    public UserDetailsManager userDetailsManager(DataSource dataSource)
-//    {
-//        return new JdbcUserDetailsManager(dataSource);
-//    }
-
-//    @Bean
-//    UserDetailsManager users(DataSource dataSource) {
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password("{noop}1234")
-//                .roles("USER")
-//                .build();
-//        UserDetails admin = User.builder()
-//                .username("admin")
-//                .password("{noop}Berea2003")
-//                .roles("USER", "ADMIN")
-//                .build();
-//        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-//        users.createUser(user);
-//        users.createUser(admin);
-//        return users;
-//    }
-
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager()
-//    {
-//        UserDetails pers1= User.builder()
-//                .username("berean5")
-//                .password("{noop}1234")
-//                .roles("dev")
-//                .build();
-//        return new InMemoryUserDetailsManager(pers1);
-//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource()

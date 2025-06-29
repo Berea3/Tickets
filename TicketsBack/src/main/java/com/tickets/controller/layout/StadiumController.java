@@ -31,18 +31,28 @@ public class StadiumController {
         System.out.println(stadium);
         ObjectMapper objectMapper=new ObjectMapper();
         User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
+        stadium.setId(Generator.generateId());
+        stadium.setUser(user);
+        stadium.setFree(true);
         for (int i=0;i<stadium.getStadiumSections().size();i++)
         {
             stadium.getStadiumSections().get(i).setId(Generator.generateId());
+            stadium.getStadiumSections().get(i).setStadium(stadium);
         }
         stadium.setUser(user);
-        stadium.setId(Generator.generateId());
         this.stadiumRepository.save(stadium);
     }
 
     @GetMapping("/getAll")
     public List<Stadium> getAll()
     {
-        return this.stadiumRepository.findAll();
+        return this.stadiumRepository.findAllByFree(true);
+    }
+
+
+    @DeleteMapping("/delete/{stadiumId}")
+    public void delete(@PathVariable String stadiumId)
+    {
+        this.stadiumRepository.deleteById(stadiumId);
     }
 }

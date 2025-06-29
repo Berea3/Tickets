@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/files")
 public class FilesController {
@@ -22,14 +24,18 @@ public class FilesController {
     @GetMapping("/findById/{id}")
     public ResponseEntity<Resource> findById(@PathVariable String id)
     {
+//        System.out.println(id);
         var optionalFile=attachmentRepository.findById(id);
 
-        var file=optionalFile.get();
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(file.getType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\""+file.getName()+"\"") //in cazul in care se vrea display in browser
+        try{
+            var file=optionalFile.get();
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(file.getType()))
+                    .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\""+file.getName()+"\"") //in cazul in care se vrea display in browser
 //                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+file.getName()+"\"")
-                .body(new ByteArrayResource(file.getFile()));
+                    .body(new ByteArrayResource(file.getFile()));
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 }

@@ -55,12 +55,14 @@ public class SportsController {
         ObjectMapper objectMapper=new ObjectMapper();
         User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
         sport.setId(Generator.generateId());
+        String stadiumId=Generator.generateId();
         sport.setUser(user);
         for (int i=0;i<sport.getStadium().getStadiumSections().size();i++)
         {
             sport.getStadium().getStadiumSections().get(i).setId(Generator.generateId());
+            sport.getStadium().getStadiumSections().get(i).setStadium(sport.getStadium());
         }
-        sport.getStadium().setId(Generator.generateId());
+        sport.getStadium().setId(stadiumId);
         sport.getStadium().setFree(false);
         this.sportRepository.save(sport);
 

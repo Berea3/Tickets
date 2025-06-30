@@ -1,1 +1,13 @@
-<p>sports-page works!</p>
+<app-header></app-header>
+
+<div class="events">
+    @for (sport of sports; track sport)
+    {
+        <div (click)="goToBuyTicket(sport.id)" class="event">
+            <img *ngIf="sport.poster && sport.poster.id" [src]="link.url+'/files/findById/'+sport.poster.id" alt="" class="poster">
+            <span>{{sport.date}}</span>
+            <span>{{ sport.name }}</span>
+            <span>bilete</span>
+        </div>
+    }
+</div>

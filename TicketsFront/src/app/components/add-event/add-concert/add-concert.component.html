@@ -8,7 +8,9 @@
     <input type="file" (change)="onFileAdded($event)" accept="image/*" multiple class="fileInput">
     <input type="date" [(ngModel)]="concert.date" name="date">
     <input type="time" [(ngModel)]="concert.time" name="time">
+    number of seats
     <input type="number" [(ngModel)]="concert.seats" name="seats">
+    price
     <input type="number" [(ngModel)]="concert.price" name="price">
 
     <button (click)="onSubmit()">Add event</button>

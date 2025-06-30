@@ -3,12 +3,7 @@
 <div class="menu">
     <bear-btn type="info" routerLink="/add-event">Add event</bear-btn>
     <bear-btn type="info" routerLink="/add-layout">Add layout</bear-btn>
-    <bear-input-checkbox type="info">hellou</bear-input-checkbox>
-    <bear-btn type="accent">Add stage</bear-btn>
-</div>
-
-<div *ngIf="1">
-    vjsdn
+    <bear-btn type="accent" routerLink="/organizer/check-ticket">Check ticket</bear-btn>
 </div>
 
 <div class="container">
@@ -32,15 +27,15 @@
     <div class="content">
         <div *ngIf="selectedTab === 'events'">
             <div class="item" *ngFor="let event of events">
-                <h3>{{ event.title }}</h3>
-                <p>{{ event.description }}</p>
+                <h3>{{ event.name }}</h3>
+                <p>{{ event.date }}</p>
             </div>
         </div>
 
         <div *ngIf="selectedTab === 'places'">
             <div class="item" *ngFor="let place of places">
                 <h3>{{ place.name }}</h3>
-                <p>{{ place.location }}</p>
+                <p (click)="deletePlace(place)">delete</p>
             </div>
         </div>
     </div>

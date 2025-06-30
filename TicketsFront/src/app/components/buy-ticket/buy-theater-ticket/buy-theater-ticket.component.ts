@@ -65,7 +65,16 @@ export class BuyTheaterTicketComponent {
     {
         this.http.post(this.link.url+"/theaters/buy/"+this.activatedRoute.snapshot.params['id'],this.theaterTicket).subscribe(
             ()=>{
-                // this.router.navigateByUrl("");
+                this.router.navigateByUrl("");
+            }
+        );
+    }
+
+    translate()
+    {
+        this.http.post(this.link.url+"/ai/translate",this.theater.description,{responseType: 'text'}).subscribe(
+            (response: any)=>{
+                this.theater.description=response;
             }
         );
     }

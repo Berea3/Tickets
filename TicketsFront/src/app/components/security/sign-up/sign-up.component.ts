@@ -4,12 +4,15 @@ import {User} from "../../../entities/User";
 import { HttpClient } from "@angular/common/http";
 import {LinkService} from '../../../services/link.service';
 import {Router} from '@angular/router';
+import {BearBtnComponent, BearInputTextComponent} from 'bear-library';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
     imports: [
-        FormsModule
+        FormsModule,
+        BearInputTextComponent,
+        BearBtnComponent
     ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
@@ -27,5 +30,15 @@ export class SignUpComponent {
                 this.router.navigateByUrl("");
             }
         );
+    }
+
+    setEmail(email: string)
+    {
+        this.user.email=email;
+    }
+
+    setPassword(password: string)
+    {
+        this.user.password=password;
     }
 }

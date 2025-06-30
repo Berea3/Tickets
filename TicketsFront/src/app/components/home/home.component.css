@@ -1,3 +1,14 @@
+.menu{
+    width: 90%;
+    background-color: rgba(165,165,255,0.2);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .events{
     width: 50rem;
     margin: auto;

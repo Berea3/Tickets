@@ -1,13 +1,18 @@
 <app-header></app-header>
 
+<div class="menu">
+    <bear-input-checkbox (checkedStateChange)="setExpired($event)" type="info">Show only available</bear-input-checkbox>
+    <bear-input-text (textChanged)="changeSearch($event)">Search</bear-input-text>
+</div>
+
 <div class="events">
-    @for (theater of theaters; track theater)
+    @for (event of filteredEvents; track event)
     {
-        <div (click)="openTheatre(theater.id)" class="event">
-            <img *ngIf="theater.poster && theater.poster.id" [src]="link.url+'/files/findById/'+theater.poster.id" alt="" class="poster">
-            <span>{{theater.date}}</span>
-            <span>{{ theater.name }}</span>
-            <span (click)="goToBuyTicket(theater.id)">bilete</span>
+        <div class="event" (click)="goToBuyTicket(event)">
+            <img [src]="link.url+'/files/findById/'+event.posterId" alt="" class="poster">
+            <span>{{event.date}}</span>
+            <span>{{ event.name }}</span>
+            <span>bilete</span>
         </div>
     }
 </div>

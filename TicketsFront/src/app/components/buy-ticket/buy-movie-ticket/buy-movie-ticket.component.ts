@@ -61,7 +61,16 @@ export class BuyMovieTicketComponent {
     {
         this.http.post(this.link.url+"/movies/buy/"+this.activatedRoute.snapshot.params['id'],this.movieTicket).subscribe(
             ()=>{
-                // this.router.navigateByUrl("");
+                this.router.navigateByUrl("");
+            }
+        );
+    }
+
+    translate()
+    {
+        this.http.post(this.link.url+"/ai/translate",this.movie.description,{responseType: 'text'}).subscribe(
+            (response: any)=>{
+                this.movie.description=response;
             }
         );
     }

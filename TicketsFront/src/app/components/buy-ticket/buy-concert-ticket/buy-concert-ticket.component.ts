@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LinkService} from '../../../services/link.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Concert} from '../../../entities/Concert';
 import {BearBtnComponent} from 'bear-library';
 import {HeaderComponent} from '../../header/header.component';
@@ -20,7 +20,7 @@ export class BuyConcertTicketComponent {
     concert: Concert=new Concert();
     concertTicket: ConcertTicket=new ConcertTicket();
 
-    constructor(private http: HttpClient, private link: LinkService, private activatedRoute: ActivatedRoute) {
+    constructor(private http: HttpClient, private link: LinkService, private activatedRoute: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit()
@@ -34,7 +34,11 @@ export class BuyConcertTicketComponent {
 
     buyTicket()
     {
-        this.http.post(this.link.url+"/concerts/buy/"+this.activatedRoute.snapshot.params['id'], this.concertTicket).subscribe();
+        this.http.post(this.link.url+"/concerts/buy/"+this.activatedRoute.snapshot.params['id'], this.concertTicket).subscribe(
+            (response: any)=>{
+                this.router.navigateByUrl("");
+            }
+        );
     }
 
 }

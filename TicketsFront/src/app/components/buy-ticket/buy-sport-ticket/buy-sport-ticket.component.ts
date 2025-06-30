@@ -68,7 +68,7 @@ export class BuySportTicketComponent {
     {
         this.http.post(this.link.url+"/sports/buy/"+this.activatedRoute.snapshot.params['id'],this.sportTicket).subscribe(
             ()=>{
-                // this.router.navigateByUrl("");
+                this.router.navigateByUrl("");
             }
         );
     }

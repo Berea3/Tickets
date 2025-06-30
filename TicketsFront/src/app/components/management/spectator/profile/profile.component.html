@@ -1,3 +1,10 @@
 <app-header></app-header>
 <button (click)="changeLanguage('en')">english</button>
 <button (click)="changeLanguage('ro')">romanian</button>
+
+<div class="container">
+    <div class="ticket" *ngFor="let ticket of tickets">
+        <h3>{{ ticket.id }}</h3>
+        <p>{{ ticket.description }}</p>
+    </div>
+</div>

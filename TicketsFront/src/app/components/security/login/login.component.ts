@@ -22,8 +22,6 @@ import {User} from '../../../entities/User';
 export class LoginComponent {
     email: string;
     password: string;
-    isTrue: boolean=true;
-
     user: User=new User();
 
     constructor(private http: HttpClient, private router: Router, private securityService: SecurityService, private link: LinkService) {}
@@ -50,11 +48,6 @@ export class LoginComponent {
             }
         );
         console.log(this.password);
-    }
-
-    onSignUp()
-    {
-        this.router.navigateByUrl("sign-up");
     }
 
     setEmail(email: string)

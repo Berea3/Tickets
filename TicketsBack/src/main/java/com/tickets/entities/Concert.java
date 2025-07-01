@@ -19,7 +19,7 @@ public class Concert {
     private String name;
     @Column(length=10000)
     private String description;
-    private LocalDate date;
+    private LocalDate date;   // @Time...
     private LocalTime time;
     private int seats;
     private int availableSeats;

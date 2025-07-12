@@ -1,0 +1,11 @@
+in momentul incarcarii fisierului pe browser, acesta se va incarca in contul user-ului
+daca user-ul da upload, atunci se ia fisierul direct din cont
+daca da abort se va sterge fisierul
+
+cand intri pe pagina cu spectacole, se vor incarca si spectacolele in fundal
+
+redis pentru cache si rsocket pentru chat
+
+webflux
+
+implementare lazy loading pentru componente in angular si child components

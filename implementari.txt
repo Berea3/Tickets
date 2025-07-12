@@ -1,0 +1,21 @@
+entitatea de user va contine doar parola si email
+aceasta va fi one to one la organizer care va avea recenzii spectacole sali etc... si one to one la user care va avea bilete si recenzii si alte chestii de user normal
+
+
+pentru cumpararea de locuri, editarea de locuri, etc. nu se va mai folosi o matrice, ci se va parcurge direct string-ul matricii, eventual o matrice fara spatii
+
+timeout ca la cinema city
+
+review-uri la organizatori de la useri
+
+
+search
+filtre
+qr code
+scaune variabile
+
+
+la diz se va vorbi si despre ollama, nodejs, git, maven
+se trece la postgres
+
+la adaugarea unui spectacol sau review sau etc sa fie verficat de ai pentru continut explicit sau harmful

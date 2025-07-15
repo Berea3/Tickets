@@ -1,0 +1,5 @@
+
+
+add to package.json to dependencies
+"berea-lib": "/home/berea/Coding/Tickets/Library Test/dist/berea-lib"
+run npm install
